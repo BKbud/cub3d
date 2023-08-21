@@ -48,6 +48,40 @@ void	check_init_data(t_game *game)
 		|| game->f_color->green > 255 || game->f_color->green < 0
 		|| game->f_color->blue > 255 || game->f_color->blue < 0)
 		print_err("color code range error\n", game);
+	map_check(game);
+}
+
+/*
+ * function:	맵에 문자들을 하나씩 확인합니다. 또한 캐릭터의 방향을 저장합니다.
+ * return:		None
+ */
+void	map_check(t_game *game)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] != ' ' && game->map[i][j] != '0' && game->map[i][j] != '1'
+				&& game->map[i][j] != 'N' && game->map[i][j] != 'S'
+				&& game->map[i][j] != 'E' && game->map[i][j] != 'W')
+				print_err("There is invalid character in the map\n", game);
+			if (game->map[i][j] == 'N' || game->map[i][j] == 'S'
+				|| game->map[i][j] == 'E' || game->map[i][j] == 'W')
+			{
+				game->direction = game->map[i][j];
+				game->d_flag++;
+			}
+			j++;
+		}
+		i++;
+	}
+	if (game->d_flag != 1)
+		print_err("There must be only one character\n", game);
 }
 
 void	exit_game(t_game *game)

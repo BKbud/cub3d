@@ -25,6 +25,7 @@ void	print_test(t_game *game)
 	printf("f_color R,G,B : %d,%d,%d\n", game->f_color->red, game->f_color->green, game->f_color->blue);
 	printf("c_color R,G,B : %d,%d,%d\n", game->c_color->red, game->c_color->green, game->c_color->blue);
 	printf("Height : %zu, Max width : %zu\n", game->hei, game->wid);
+	printf("direction : %c\n", game->direction);
 	printf("\n");
 	while (i < game->hei)
 	{
@@ -115,7 +116,7 @@ void	init_map(t_game *game, int fd, char *filename)
 		line = get_valid_line(fd);
 		i++;
 	}
-	game->map[i] = NULL; 
+	game->map[i] = NULL;
 	close(fd);
 }
 

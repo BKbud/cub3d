@@ -31,6 +31,8 @@ typedef struct s_game {
 	size_t	hei;
 	size_t	wid;
 	char	**map;
+	char	direction;
+	int		d_flag;
 	char	*n_texure;
 	char	*s_texure;
 	char	*e_texure;
@@ -61,6 +63,7 @@ t_color	*set_color(char *line);
 void	check_extension(char *filename);
 void	print_err(char *msg, t_game *game);
 void	check_init_data(t_game *game);
+void	map_check(t_game *game);
 void	exit_game(t_game *game);
 
 

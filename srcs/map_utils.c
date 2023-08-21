@@ -105,4 +105,6 @@ void	init_game(t_game *game)
 	game->f_color = 0;
 	game->c_color = 0;
 	game->map = 0;
+	game->direction = 0;
+	game->d_flag = 0;
 }
