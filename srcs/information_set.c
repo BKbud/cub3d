@@ -24,6 +24,8 @@ char	*type_identifier(t_game *game, int fd)
 	line = get_valid_line(fd);
 	while (TRUE)
 	{
+		if (!line)
+			return (NULL);
 		temp_line = line;
 		while (is_space(*line))
 			line++;
@@ -32,7 +34,7 @@ char	*type_identifier(t_game *game, int fd)
 		else if (*line == '1')
 			return (temp_line);
 		else
-			print_err("Unvalid information!", game);
+			print_err("Invalid information!", game);
 		free(temp_line);
 		// 각 타입의 중복 처리 필요
 	}
@@ -45,7 +47,6 @@ char	*type_identifier(t_game *game, int fd)
  * 
  * 쉼표 중복 처리 o
  * 공백 처리 o
- * 컬러 코드 범위와 int 범위를 넘어서는 값을 받을 때 예외 처리 필요 (len 활용)
  */
 t_color	*set_color(char *line)
 {
@@ -56,23 +57,26 @@ t_color	*set_color(char *line)
 	len = 0;
 	comma_num = 0;
 	while (line[len])
+	{
+		if (line[len] != ',' && !is_space(line[len]) && (line[len] < '0' || line[len] > '9'))
+			return (NULL);
 		if (line[len++] == ',')
 			comma_num++;
+	}
 	color = malloc(sizeof(t_color *));
 	if (!color || comma_num != 2 || line[len - 1] == ',')
 		return (NULL);
 	color->red = ft_atoi(line);
-	while (*(++line) != ',')
-		len--;
+	while (*line != ',' && *(line + 1))
+		line++;
 	line++;
 	color->green = ft_atoi(line);
-	while (*(++line) != ',' && *line)
-		len--;
+	while (*line != ',' && *(line + 1))
+		line++;
 	line++;
 	color->blue = ft_atoi(line);
 	return (color);
 }
-
 /*
  * function:	타입에 맞는 데이터를 초기화합니다.
  * return:		TRUE/FALSE

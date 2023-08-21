@@ -63,11 +63,18 @@ void	read_map(char *filename, t_game *game)
  */
 void	check_max_wid(t_game *game, char *line, int fd)
 {
+	int	i;
+
 	while (TRUE)
 	{
-
+		i = 0;
 		if (!line)
+		{
+			close(fd);
 			break ;
+		}
+		while (is_space(line[i]))
+			i++;
 		game->hei++;
 		if (game->wid < ft_strlen(line))
 			game->wid = ft_strlen(line);
@@ -121,20 +128,17 @@ char	*jump_to_map(t_game *game, int fd)
 	char	*line;
 	char	*temp_line;
 
-	line = get_valid_line(fd);
-	if (!line)
-		print_err("File open fail\n", game);
 	while (TRUE)
 	{
+		line = get_valid_line(fd);
+		if (!line)
+			print_err("There is no map\n", game);
 		temp_line = line;
 		while (is_space(*line))
 			line++;
 		if (*line == '1' || *line == '0')
 			break ;
-		if (!line)
-			print_err("There is no map\n", game);
 		free(temp_line);
-		line = get_valid_line(fd);
 	}
 	return (temp_line);
 }

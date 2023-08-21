@@ -33,13 +33,20 @@ char	*get_valid_line(int fd)
 	char	*line;
 	char	*temp_line;
 	int		len;
+	int		i;
 
+	i = 0;
 	line = get_next_line(fd);
 	if (!line)
 		return (NULL);
 	temp_line = line;
 	len = ft_strlen(line);
-	while (is_space(line[len - 1]) || line[len - 1] == '\n')
+	while (is_space(line[i]))
+	{
+		line[i] = ' ';
+		i++;
+	}
+	while (len - 1 >= 0 && (is_space(line[len - 1]) || line[len - 1] == '\n'))
 		len--;
 	if (len == 0)
 		len = 1;
@@ -76,6 +83,8 @@ void	space_adder(t_game *game, char *map, char *line)
 	ft_strlcpy(map, line, len + 1);
 	if (len != game->wid)
 	{
+		if (*map == '\n')
+			len--;
 		while (len < game->wid)
 		{
 			map[len] = ' ';

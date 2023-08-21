@@ -37,12 +37,11 @@ void	print_err(char *msg, t_game *game)
 // 추가 필요
 void	check_init_data(t_game *game)
 {
-	if (!game->hei || !game->wid)
-		print_err("Uninitialized data exists\n", game);
+	if (game->hei <= 0 || game->wid <= 0)
+		print_err("Uninitialized data exists1\n", game);
 	if (!game->n_texure || !game->s_texure
 		|| !game->e_texure || !game->w_texure)
-		print_err("Uninitialized data exists\n", game);
-	//RGB color 범위 제한 [0, 255]
+		print_err("Uninitialized data exists2\n", game);
 	if (!game->c_color || !game->f_color)
 		print_err("invalid color information exist\n", game);
 	if (game->f_color->red > 255 || game->f_color->red < 0
