@@ -6,7 +6,7 @@
 #    By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 13:35:33 by hanryu            #+#    #+#              #
-#    Updated: 2023/08/21 13:37:45 by hanryu           ###   ########.fr        #
+#    Updated: 2023/08/22 15:36:54 by hanryu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-SRCS = main.c
+SRCS = main.c raycast.c vec.c draw.c
 OBJS = $(SRCS:.c=.o)
 
 LIBNAME = ft

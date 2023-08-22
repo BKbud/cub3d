@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:28:18 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/21 19:11:43 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/22 15:44:48 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,17 @@
 # include <stdio.h>
 # include "libft.h"
 # include <math.h>
+# include "vec.h"
 
-# define WINDOW_X 400
-# define WINDOW_Y 250
+# define W_X 1000
+# define W_Y 1000
 # define FOV 60
 # define FOV_H FOV*(M_PI/180)
-# define FOV_V (FOV_H*(double)WINDOW_Y/(double)WINDOW_X)
+# define FOV_V (FOV_H*(double)W_Y/(double)W_X)
+# define EPS (1e-06)
+# define is_zero(d) (fabs(d) < EPS)
+# define D_X 6
+# define D_Y 5
 
 typedef struct s_color {
 	int	red;
@@ -33,8 +38,6 @@ typedef struct s_color {
 }	t_color;
 
 typedef struct s_game {
-	void	*mlx;
-	void	*win;
 	size_t	hei;
 	size_t	wid;
 	char	**map;
@@ -48,6 +51,8 @@ typedef struct s_game {
 
 typedef struct s_data
 {
+	void	*mlx;
+	void	*win;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -57,10 +62,17 @@ typedef struct s_data
 
 typedef struct s_player
 {
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
+	t_vec2	pos;
+	t_vec2	dir;
 }	t_player;
+
+typedef struct s_cpoint
+{
+	t_vec2	pos;
+	char	c_dir;
+}	t_cpoint;
+
+void	raycast(t_player *player, const char map[D_Y][D_X], t_data *data);
+void	draw_wall(t_vec2 pos, t_cpoint inter, int index, t_data *data);
 
 #endif
