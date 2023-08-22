@@ -18,10 +18,10 @@ void	print_test(t_game *game)
 
 	i = 0;
 	printf("----------------------test-------------------\n");
-	printf("north texure : %s\n", game->n_texure);
-	printf("south texure : %s\n", game->s_texure);
-	printf("west texure : %s\n", game->w_texure);
-	printf("east texure : %s\n", game->e_texure);
+	printf("north texure : %s\n", game->n_texture);
+	printf("south texure : %s\n", game->s_texture);
+	printf("west texure : %s\n", game->w_texture);
+	printf("east texure : %s\n", game->e_texture);
 	printf("f_color R,G,B : %d,%d,%d\n", game->f_color->red, game->f_color->green, game->f_color->blue);
 	printf("c_color R,G,B : %d,%d,%d\n", game->c_color->red, game->c_color->green, game->c_color->blue);
 	printf("Height : %zu, Max width : %zu\n", game->hei, game->wid);
@@ -50,7 +50,7 @@ void	read_map(char *filename, t_game *game)
 
 	fd = open(filename, O_RDONLY);
 	if (fd <= 0)
-		print_err("File open fail\n", game);
+		print_err("File open failed\n");
 	line = type_identifier(game, fd);
 	check_max_wid(game, line, fd);
 	init_map(game, fd, filename);
@@ -99,18 +99,18 @@ void	init_map(t_game *game, int fd, char *filename)
 	i = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd <= 0)
-		print_err("File open fail\n", game);
+		print_err("File open failed\n");
 	game->map = (char **)malloc(sizeof(char *) * (game->hei + 1));
 	if (!game->map)
-		print_err("File open fail\n", game);
-	line = jump_to_map(game, fd);
+		print_err("File open failed\n");
+	line = jump_to_map(fd);
 	while (i < game->hei)
 	{
 		if (!line)
-			print_err("Map error\n", game);
+			print_err("Map error\n");
 		game->map[i] = malloc(sizeof(char) * (game->wid + 1));
 		if (!game->map[i])
-			print_err("File open fail\n", game);
+			print_err("File open failed\n");
 		space_adder(game, game->map[i], line);
 		free (line);
 		line = get_valid_line(fd);
@@ -124,7 +124,7 @@ void	init_map(t_game *game, int fd, char *filename)
  * function:	맵이 있는 곳까지 파일을 넘깁니다.
  * return:		맵의 첫 번째 문자열
  */
-char	*jump_to_map(t_game *game, int fd)
+char	*jump_to_map(int fd)
 {
 	char	*line;
 	char	*temp_line;
@@ -133,7 +133,7 @@ char	*jump_to_map(t_game *game, int fd)
 	{
 		line = get_valid_line(fd);
 		if (!line)
-			print_err("There is no map\n", game);
+			print_err("There is no map\n");
 		temp_line = line;
 		while (is_space(*line))
 			line++;

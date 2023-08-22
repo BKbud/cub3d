@@ -33,10 +33,10 @@ typedef struct s_game {
 	char	**map;
 	char	direction;
 	int		d_flag;
-	char	*n_texure;
-	char	*s_texure;
-	char	*e_texure;
-	char	*w_texure;
+	char	*n_texture;
+	char	*s_texture;
+	char	*e_texture;
+	char	*w_texture;
 	t_color	*f_color;
 	t_color	*c_color;
 }	t_game;
@@ -45,7 +45,7 @@ typedef struct s_game {
 void 	read_map(char *filename, t_game *game);
 void	check_max_wid(t_game *game, char *line, int fd);
 void	init_map(t_game *game, int fd, char *filename);
-char	*jump_to_map(t_game *game, int fd);
+char	*jump_to_map(int fd);
 
 // map_utils.c
 int		is_space(char c);
@@ -61,10 +61,10 @@ t_color	*set_color(char *line);
 
 // err_handler.c
 void	check_extension(char *filename);
-void	print_err(char *msg, t_game *game);
+void	print_err(char *msg);
 void	check_init_data(t_game *game);
 void	map_check(t_game *game);
-void	exit_game(t_game *game);
+void	validation_check(t_game *game);
 
 
 #endif

@@ -98,10 +98,10 @@ void	init_game(t_game *game)
 {
 	game->hei = 0;
 	game->wid = 0;
-	game->n_texure = 0;
-	game->s_texure = 0;
-	game->e_texure = 0;
-	game->w_texure = 0;
+	game->n_texture = 0;
+	game->s_texture = 0;
+	game->e_texture = 0;
+	game->w_texture = 0;
 	game->f_color = 0;
 	game->c_color = 0;
 	game->map = 0;

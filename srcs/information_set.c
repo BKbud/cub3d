@@ -34,19 +34,15 @@ char	*type_identifier(t_game *game, int fd)
 		else if (*line == '1')
 			return (temp_line);
 		else
-			print_err("Invalid information!", game);
+			print_err("Invalid information\n");
 		free(temp_line);
-		// 각 타입의 중복 처리 필요
 	}
 	return (NULL);
 }
 
 /*
  * function:	색 정보를 int형으로 반환하여 구조체에 저장합니다.
- * return:		color 구조체
- * 
- * 쉼표 중복 처리 o
- * 공백 처리 o
+ * return:		color 구조체 포인터
  */
 t_color	*set_color(char *line)
 {
@@ -69,12 +65,13 @@ t_color	*set_color(char *line)
 	color->red = ft_atoi(line);
 	while (*line != ',' && *(line + 1))
 		line++;
-	line++;
-	color->green = ft_atoi(line);
+	color->green = ft_atoi(++line);
 	while (*line != ',' && *(line + 1))
 		line++;
-	line++;
-	color->blue = ft_atoi(line);
+	color->blue = ft_atoi(++line);
+	while (*line)
+		if (is_space(*(line++)))
+			print_err("Invalid color information exists\n");
 	return (color);
 }
 /*
@@ -84,18 +81,19 @@ t_color	*set_color(char *line)
 int	set_data(t_game *game, char *line)
 {
 	if (!ft_strncmp("NO ", line, 3))
-		game->n_texure = erase_space(line + 3);
+		game->n_texture = erase_space(line + 3);
 	else if (!ft_strncmp("SO ", line, 3))
-		game->s_texure = erase_space(line + 3);
+		game->s_texture = erase_space(line + 3);
 	else if (!ft_strncmp("WE ", line, 3))
-		game->w_texure = erase_space(line + 3);
+		game->w_texture = erase_space(line + 3);
 	else if (!ft_strncmp("EA ", line, 3))
-		game->e_texure = erase_space(line + 3);
+		game->e_texture = erase_space(line + 3);
 	else if (!ft_strncmp("F ", line, 2))
 		game->f_color = set_color(line + 2);
 	else if (!ft_strncmp("C ", line, 2))
 		game->c_color = set_color(line + 2);
 	else
 		return (0);
+	game->d_flag++;
 	return (1);
 }

@@ -17,13 +17,10 @@ int	main(int ac, char **av)
 	t_game	*game;
 
 	if (ac != 2)
-	{
-		printf("Map file missing\n");
-		exit(0);
-	}
+		print_err("Map file missing\n");
 	game = (t_game *)malloc(sizeof(t_game));
 	if (!game)
-		return (-1);
+		print_err("Allocation failed\n");
 	check_extension(av[1]);
 	init_game(game);
 	read_map(av[1], game);
