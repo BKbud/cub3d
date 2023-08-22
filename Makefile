@@ -31,11 +31,8 @@ MAIN_OBJ		= $(MAIN_SRC:.c=.o)
 PARSE_SRCDIR	= ./parsing
 PARSE_SRCFILES	= map_set.c map_utils.c information_set.c err_handler.c
 
-HANRYU_SRCDIR	= ./
-HANRYU_SRCFILES	= 
 
 SRC_SRCS	= $(addprefix $(PARSE_SRCDIR)/, $(PARSE_SRCFILES))
-				$(addprefix $(HANRYU_SRCDIR)/, $(HANRYU_SRCFILES))
 
 SRC_OBJS	= $(SRC_SRCS:.c=.o)
 

@@ -13,7 +13,6 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <mlx.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
@@ -26,8 +25,6 @@ typedef struct s_color {
 }	t_color;
 
 typedef struct s_game {
-	void	*mlx;
-	void	*win;
 	size_t	hei;
 	size_t	wid;
 	char	**map;
@@ -42,7 +39,6 @@ typedef struct s_game {
 }	t_game;
 
 // main.c
-void	init_game(t_game *game);
 
 // mapset.c
 void 	read_map(char *filename, t_game *game);
@@ -51,6 +47,7 @@ void	init_map(t_game *game, int fd, char *filename);
 char	*jump_to_map(int fd);
 
 // map_utils.c
+void	init_game(t_game *game);
 int		is_space(char c);
 char	*get_valid_line(int fd);
 char	*erase_space(char *line);
@@ -60,6 +57,7 @@ void	space_adder(t_game *game, char *map, char *line);
 char	*type_identifier(t_game *game, int fd);
 int		set_data(t_game *game, char *line);
 t_color	*set_color(char *line);
+void	check_color(char *line);
 
 // err_handler.c
 void	check_extension(char *filename);
@@ -67,6 +65,5 @@ void	print_err(char *msg);
 void	check_init_data(t_game *game);
 void	map_check(t_game *game);
 void	validation_check(t_game *game);
-
 
 #endif

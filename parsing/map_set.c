@@ -10,30 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/parsing.h"
 
-void	print_test(t_game *game)
-{
-	size_t	i;
+// void	print_test(t_game *game)
+// {
+// 	size_t	i;
 
-	i = 0;
-	printf("----------------------test-------------------\n");
-	printf("north texure : %s\n", game->n_texture);
-	printf("south texure : %s\n", game->s_texture);
-	printf("west texure : %s\n", game->w_texture);
-	printf("east texure : %s\n", game->e_texture);
-	printf("f_color R,G,B : %d,%d,%d\n", game->f_color->red, game->f_color->green, game->f_color->blue);
-	printf("c_color R,G,B : %d,%d,%d\n", game->c_color->red, game->c_color->green, game->c_color->blue);
-	printf("Height : %zu, Max width : %zu\n", game->hei, game->wid);
-	printf("direction : %c\n", game->direction);
-	printf("\n");
-	while (i < game->hei)
-	{
-		printf("%s\n", game->map[i]);
-		i++;
-	}
-	printf("---------------------------------------------\n");
-}
+// 	i = 0;
+// 	printf("----------------------test-------------------\n");
+// 	printf("north texure : %s\n", game->n_texture);
+// 	printf("south texure : %s\n", game->s_texture);
+// 	printf("west texure : %s\n", game->w_texture);
+// 	printf("east texure : %s\n", game->e_texture);
+// 	printf("f_color R,G,B : %d,%d,%d\n", game->f_color->red, game->f_color->green, game->f_color->blue);
+// 	printf("c_color R,G,B : %d,%d,%d\n", game->c_color->red, game->c_color->green, game->c_color->blue);
+// 	printf("Height : %zu, Max width : %zu\n", game->hei, game->wid);
+// 	printf("direction : %c\n", game->direction);
+// 	printf("\n");
+// 	while (i < game->hei)
+// 	{
+// 		printf("%s\n", game->map[i]);
+// 		i++;
+// 	}
+// 	printf("---------------------------------------------\n");
+// }
 
 /*
  * function:	파일을 읽어 맵의 정보를 확인합니다.
@@ -55,7 +55,7 @@ void	read_map(char *filename, t_game *game)
 	check_max_wid(game, line, fd);
 	init_map(game, fd, filename);
 	check_init_data(game);
-	print_test(game);
+	// print_test(game);
 }
 
 /*

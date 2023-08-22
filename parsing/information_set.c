@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/parsing.h"
 
 /*
  * function:	texture, color 등의 Type을 확인하고 관련 구조체에 저장합니다.
@@ -47,20 +47,10 @@ char	*type_identifier(t_game *game, int fd)
 t_color	*set_color(char *line)
 {
 	t_color	*color;
-	int		len;
-	int		comma_num;
 
-	len = 0;
-	comma_num = 0;
-	while (line[len])
-	{
-		if (line[len] != ',' && !is_space(line[len]) && (line[len] < '0' || line[len] > '9'))
-			return (NULL);
-		if (line[len++] == ',')
-			comma_num++;
-	}
+	check_color(line);
 	color = malloc(sizeof(t_color *));
-	if (!color || comma_num != 2 || line[len - 1] == ',')
+	if (!color)
 		return (NULL);
 	color->red = ft_atoi(line);
 	while (*line != ',' && *(line + 1))
@@ -74,6 +64,27 @@ t_color	*set_color(char *line)
 			print_err("Invalid color information exists\n");
 	return (color);
 }
+
+// 컴마의 개수 및 숫자가 아닌 경우를 확인합니다.
+void	check_color(char *line)
+{
+	int	len;
+	int	comma_num;
+
+	len = 0;
+	comma_num = 0;
+	while (line[len])
+	{
+		if (line[len] != ',' && !is_space(line[len])
+			&& (line[len] < '0' || line[len] > '9'))
+			print_err("Invalid Color code\n");
+		if (line[len++] == ',')
+			comma_num++;
+	}
+	if (comma_num != 2)
+		print_err("Invalid Color code\n");
+}
+
 /*
  * function:	타입에 맞는 데이터를 초기화합니다.
  * return:		TRUE/FALSE

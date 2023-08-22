@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/parsing.h"
 
 void	print_err(char *msg)
 {
@@ -60,13 +60,14 @@ void	map_check(t_game *game)
 	size_t	i;
 	size_t	j;
 
-	i = 0;
-	while (game->map[i])
+	i = -1;
+	while (game->map[++i])
 	{
-		j = 0;
-		while (game->map[i][j])
+		j = -1;
+		while (game->map[i][++j])
 		{
-			if (game->map[i][j] != ' ' && game->map[i][j] != '0' && game->map[i][j] != '1'
+			if (game->map[i][j] != ' '
+				&& game->map[i][j] != '0' && game->map[i][j] != '1'
 				&& game->map[i][j] != 'N' && game->map[i][j] != 'S'
 				&& game->map[i][j] != 'E' && game->map[i][j] != 'W')
 				print_err("There is invalid character in the map\n");
@@ -76,9 +77,7 @@ void	map_check(t_game *game)
 				game->direction = game->map[i][j];
 				game->d_flag++;
 			}
-			j++;
 		}
-		i++;
 	}
 	if (game->d_flag != 7)
 		print_err("Duplicated information or Character exists\n");
@@ -94,25 +93,26 @@ void	validation_check(t_game *game)
 	size_t	i;
 	size_t	j;
 
-	i = 0;
-	while (game->map[i])
+	i = -1;
+	while (game->map[++i])
 	{
-		j = 0;
-		while (game->map[i][j])
+		j = -1;
+		while (game->map[i][++j])
 		{
 			if (game->map[i][j] == '0'
 				|| game->map[i][j] == 'N' || game->map[i][j] == 'S'
 				|| game->map[i][j] == 'E' || game->map[i][j] == 'W')
 			{
-				if (i == 0 || i == game->hei - 1 || j == 0 || j == game->wid - 1)
+				if (i == 0 || i == game->hei - 1
+					|| j == 0 || j == game->wid - 1)
 					print_err("Invalid map\n");
-				else if (game->map[i][j - 1] == ' ' || game->map[i][j + 1] == ' ')
+				else if (game->map[i][j - 1] == ' '
+					|| game->map[i][j + 1] == ' ')
 					print_err("Invalid map\n");
-				else if (game->map[i - 1][j] == ' ' || game->map[i + 1][j] == ' ')
+				else if (game->map[i - 1][j] == ' '
+					|| game->map[i + 1][j] == ' ')
 					print_err("Invalid map\n");
 			}
-			j++;
 		}
-		i++;
 	}
 }

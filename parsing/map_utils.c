@@ -10,7 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/parsing.h"
+
+void	init_game(t_game *game)
+{
+	game->hei = 0;
+	game->wid = 0;
+	game->n_texture = 0;
+	game->s_texture = 0;
+	game->e_texture = 0;
+	game->w_texture = 0;
+	game->f_color = 0;
+	game->c_color = 0;
+	game->map = 0;
+	game->direction = 0;
+	game->d_flag = 0;
+}
 
 /*
  * function:	공백 문자 여부를 확인
@@ -35,17 +50,14 @@ char	*get_valid_line(int fd)
 	int		len;
 	int		i;
 
-	i = 0;
+	i = -1;
 	line = get_next_line(fd);
 	if (!line)
 		return (NULL);
 	temp_line = line;
 	len = ft_strlen(line);
-	while (is_space(line[i]))
-	{
+	while (is_space(line[++i]))
 		line[i] = ' ';
-		i++;
-	}
 	while (len - 1 >= 0 && (is_space(line[len - 1]) || line[len - 1] == '\n'))
 		len--;
 	if (len == 0)
