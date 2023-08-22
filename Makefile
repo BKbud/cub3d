@@ -25,9 +25,18 @@ MLXNAME		= mlx
 LIBFTDIR	= ./libft
 LIBFTNAME	= ft
 
-SRCDIR		= ./srcs
-SRCFILES	= main.c map_set.c map_utils.c information_set.c err_handler.c
-SRC_SRCS	= $(addprefix $(SRCDIR)/, $(SRCFILES))
+MAIN_SRC		= main.c
+MAIN_OBJ		= $(MAIN_SRC:.c=.o)
+
+PARSE_SRCDIR	= ./parsing
+PARSE_SRCFILES	= map_set.c map_utils.c information_set.c err_handler.c
+
+HANRYU_SRCDIR	= ./
+HANRYU_SRCFILES	= 
+
+SRC_SRCS	= $(addprefix $(PARSE_SRCDIR)/, $(PARSE_SRCFILES))
+				$(addprefix $(HANRYU_SRCDIR)/, $(HANRYU_SRCFILES))
+
 SRC_OBJS	= $(SRC_SRCS:.c=.o)
 
 all: $(NAME)
@@ -35,19 +44,19 @@ all: $(NAME)
 %.o: %.c
 	$(CC) -c $(CCFLAGS) -I$(HEADDIR) -I$(LIBFTDIR) -I$(MLXDIR) $< -o $@
 
-$(NAME): $(SRC_OBJS)
+$(NAME): $(MAIN_OBJ) $(SRC_OBJS)
 	$(MAKE) all -C $(LIBFTDIR)
 	$(MAKE) all -C $(MLXDIR)
 	$(CC) $(CCFLAGS) -L$(LIBFTDIR) -l$(LIBFTNAME) \
 		-L$(MLXDIR) -l$(MLXNAME) $(MLX_FLAGS) $^ -o $@
 
 clean:
-	$(RM) $(SRC_OBJS)
+	$(RM) $(MAIN_OBJ) $(SRC_OBJS)
 	$(MAKE) -C $(LIBFTDIR) clean
 	$(MAKE) -C $(MLXDIR) clean
 
 fclean:
-	$(RM) $(SRC_OBJS)
+	$(RM) $(MAIN_OBJ) $(SRC_OBJS)
 	$(RM) $(NAME)
 	$(MAKE) -C $(LIBFTDIR) fclean
 	$(MAKE) -C $(MLXDIR) fclean

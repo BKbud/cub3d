@@ -28,10 +28,7 @@ void	check_extension(char *filename)
 	while (*(filename + idx) != '.')
 		idx++;
 	if (ft_strncmp(filename + idx, ".cub", 5) != 0)
-	{
-		printf("File extension error\n");
-		exit(0);
-	}
+		print_err("File extension error\n");
 }
 
 /*

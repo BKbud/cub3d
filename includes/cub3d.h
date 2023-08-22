@@ -41,6 +41,9 @@ typedef struct s_game {
 	t_color	*c_color;
 }	t_game;
 
+// main.c
+void	init_game(t_game *game);
+
 // mapset.c
 void 	read_map(char *filename, t_game *game);
 void	check_max_wid(t_game *game, char *line, int fd);
@@ -52,7 +55,6 @@ int		is_space(char c);
 char	*get_valid_line(int fd);
 char	*erase_space(char *line);
 void	space_adder(t_game *game, char *map, char *line);
-void	init_game(t_game *game);
 
 // information_set.c
 char	*type_identifier(t_game *game, int fd);

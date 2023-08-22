@@ -93,18 +93,3 @@ void	space_adder(t_game *game, char *map, char *line)
 	}
 	map[game->wid] = '\0';
 }
-
-void	init_game(t_game *game)
-{
-	game->hei = 0;
-	game->wid = 0;
-	game->n_texture = 0;
-	game->s_texture = 0;
-	game->e_texture = 0;
-	game->w_texture = 0;
-	game->f_color = 0;
-	game->c_color = 0;
-	game->map = 0;
-	game->direction = 0;
-	game->d_flag = 0;
-}
