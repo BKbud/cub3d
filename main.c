@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:35:25 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/22 15:47:03 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/22 15:58:06 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	init_player(t_player *player, char map[D_Y][D_X])
 	}
 }
 
-int	main()
+int	main(void)
 {
 	char	map[D_Y][D_X] = {
 		{'1', '1', '1', '1', '1', '1'},

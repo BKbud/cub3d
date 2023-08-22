@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:51:22 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/22 15:37:15 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/22 16:00:26 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ int	wall_pixel(double d)
 
 void	draw_wall(t_vec2 pos, t_cpoint inter, int index, t_data *data)
 {
-	int	wpixel;
-	int	y_start;
-	int	y_end;
-	int	j;
+	int		wpixel;
+	int		y_start;
+	int		y_end;
+	int		j;
+	double	theta;
 
-	wpixel = wall_pixel(vec_dis(inter.pos, pos));
+	theta = (FOV_H / (W_X - 1)) * (index + 1 - ((double)(W_X + 1) / 2)); // 어안렌즈 왜곡 보정
+	wpixel = wall_pixel(vec_dis(inter.pos, pos) * cos(theta));
 	y_start = (W_Y - wpixel) / 2;
 	y_end = ((W_Y + wpixel) / 2) - 1;
 	j = 0;
