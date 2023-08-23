@@ -6,7 +6,7 @@
 #    By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 13:35:33 by hanryu            #+#    #+#              #
-#    Updated: 2023/08/22 15:36:54 by hanryu           ###   ########.fr        #
+#    Updated: 2023/08/23 17:46:03 by hanryu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,16 @@ MAIN_SRC = main.c
 PARSE_SRCDIR = ./parsing
 PARSE_SRCS = map_set.c map_utils.c information_set.c err_handler.c get_next_line.c
 
-HANRYU_SRCDIR = ./hanryu
-HANRYU_SRCS = raycast.c vec.c draw.c
+RAYCAST_SRCDIR = ./raycast
+RAYCAST_SRCS = raycast.c draw.c raycast_single_step_x.c raycast_single_step_y.c
+
+UTILS_SRCDIR = ./utils
+UTILS_SRCS = vec.c utils.c
 
 SRCS =	$(MAIN_SRC)\
 		$(addprefix $(PARSE_SRCDIR)/, $(PARSE_SRCS))\
-		$(addprefix $(HANRYU_SRCDIR)/, $(HANRYU_SRCS))
+		$(addprefix $(RAYCAST_SRCDIR)/, $(RAYCAST_SRCS))\
+		$(addprefix $(UTILS_SRCDIR)/, $(UTILS_SRCS))
 
 OBJS = $(SRCS:.c=.o)
 
