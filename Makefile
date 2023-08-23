@@ -16,7 +16,20 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-SRCS = main.c raycast.c vec.c draw.c
+HEADDIR = ./includes
+
+MAIN_SRC = main.c
+
+PARSE_SRCDIR = ./parsing
+PARSE_SRCS = map_set.c map_utils.c information_set.c err_handler.c get_next_line.c
+
+HANRYU_SRCDIR = ./hanryu
+HANRYU_SRCS = raycast.c vec.c draw.c
+
+SRCS =	$(MAIN_SRC)\
+		$(addprefix $(PARSE_SRCDIR)/, $(PARSE_SRCS))\
+		$(addprefix $(HANRYU_SRCDIR)/, $(HANRYU_SRCS))
+
 OBJS = $(SRCS:.c=.o)
 
 LIBNAME = ft
@@ -34,7 +47,7 @@ $(NAME) : $(OBJS)
 		-framework OpenGL -framework AppKit $^ -o $@
 
 %.o : %.c
-	$(CC) $(CFLAGS) -I$(LIBDIR) -I$(MLXDIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(HEADDIR) -I$(LIBDIR) -I$(MLXDIR) -c $< -o $@
 
 all : $(NAME)
 

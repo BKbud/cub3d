@@ -31,24 +31,6 @@
 # define D_X 6
 # define D_Y 5
 
-typedef struct s_color {
-	int	red;
-	int	blue;
-	int	green;
-}	t_color;
-
-typedef struct s_game {
-	size_t	hei;
-	size_t	wid;
-	char	**map;
-	char	*n_texure;
-	char	*s_texure;
-	char	*e_texure;
-	char	*w_texure;
-	t_color	*f_color;
-	t_color	*c_color;
-}	t_game;
-
 typedef struct s_data
 {
 	void	*mlx;
@@ -72,7 +54,7 @@ typedef struct s_cpoint
 	char	c_dir;
 }	t_cpoint;
 
-void	raycast(t_player *player, const char map[D_Y][D_X], t_data *data);
+void	raycast(t_player *player, const char **map, t_data *data);
 void	draw_wall(t_vec2 pos, t_cpoint inter, int index, t_data *data);
 
 #endif

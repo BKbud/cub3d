@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "./includes/parsing.h"
+#include "./includes/cub3d.h"
 
 void	init_player_dir(t_vec2 *dir, char c_dir)
 {
@@ -36,7 +37,7 @@ void	init_player_dir(t_vec2 *dir, char c_dir)
 	}
 }
 
-void	init_player(t_player *player, char map[D_Y][D_X])
+void	init_player(t_player *player, char **map)
 {
 	int	i;
 	int	j;
@@ -59,18 +60,23 @@ void	init_player(t_player *player, char map[D_Y][D_X])
 	}
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	char	map[D_Y][D_X] = {
-		{'1', '1', '1', '1', '1', '1'},
-		{'1', '0', '0', '0', '0', '1'},
-		{'1', '0', '0', '1', '0', '1'},
-		{'1', '0', '0', '0', 'N', '1'},
-		{'1', '1', '1', '1', '1', '1'} 
-	};
+	t_game		*game;
 	t_player	player;
 	t_data		data;
 
+	//--------------map parsing----------------
+	if (ac != 2)
+		print_err("Map file missing\n");
+	game = (t_game *)malloc(sizeof(t_game));
+	if (!game)
+		print_err("Allocation failed\n");
+	check_extension(av[1]);
+	init_game(game);
+	read_map(av[1], game);
+
+	//---------------operation-----------------
 	ft_memset(&data, 0, sizeof(t_data));
 
 	data.mlx = mlx_init();
@@ -81,8 +87,8 @@ int	main(void)
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
 	&data.line_length, &data.endian);
 
-	init_player(&player, map);
-	raycast(&player, map, &data);
+	init_player(&player, game->map);
+	raycast(&player, (const char**)game->map, &data);
 
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_loop(data.mlx);

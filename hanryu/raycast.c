@@ -20,7 +20,7 @@ t_vec2	rotate_ray_h(t_vec2 p_dir, int i)
 	return (vec_rot(p_dir, theta));
 }
 
-t_cpoint	raycast_single_step_x(t_vec2 pos, t_vec2 dir, const char map[D_Y][D_X])
+t_cpoint	raycast_single_step_x(t_vec2 pos, t_vec2 dir, const char **map)
 {
 	t_cpoint	inter;
 	double		t;
@@ -71,7 +71,7 @@ t_cpoint	raycast_single_step_x(t_vec2 pos, t_vec2 dir, const char map[D_Y][D_X])
 	return (inter);
 }
 
-t_cpoint	raycast_single_step_y(t_vec2 pos, t_vec2 dir, const char map[D_Y][D_X])
+t_cpoint	raycast_single_step_y(t_vec2 pos, t_vec2 dir, const char **map)
 {
 	t_cpoint	inter;
 	double		t;
@@ -129,7 +129,7 @@ t_cpoint	raycast_single_close(t_vec2 pos, t_cpoint inter_x, t_cpoint inter_y)
 	return (inter_y);
 }
 
-t_cpoint	raycast_single(t_vec2 pos, t_vec2 dir, const char map[D_Y][D_X])
+t_cpoint	raycast_single(t_vec2 pos, t_vec2 dir, const char **map)
 {
 	t_cpoint	inter_x;
 	t_cpoint	inter_y;
@@ -143,7 +143,7 @@ t_cpoint	raycast_single(t_vec2 pos, t_vec2 dir, const char map[D_Y][D_X])
 	return (raycast_single_close(pos, inter_x, inter_y));
 }
 
-void	raycast(t_player *player, const char map[D_Y][D_X], t_data *data)
+void	raycast(t_player *player, const char **map, t_data *data)
 {
 	int	i;
 
