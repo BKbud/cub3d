@@ -12,37 +12,6 @@
 
 #include "../includes/parsing.h"
 
-// void	print_test(t_game *game)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	printf("----------------------test-------------------\n");
-// 	printf("north texure : %s\n", game->n_texture);
-// 	printf("south texure : %s\n", game->s_texture);
-// 	printf("west texure : %s\n", game->w_texture);
-// 	printf("east texure : %s\n", game->e_texture);
-// 	printf("f_color R,G,B : %d,%d,%d\n", game->f_color->red, game->f_color->green, game->f_color->blue);
-// 	printf("c_color R,G,B : %d,%d,%d\n", game->c_color->red, game->c_color->green, game->c_color->blue);
-// 	printf("Height : %zu, Max width : %zu\n", game->hei, game->wid);
-// 	printf("direction : %c\n", game->direction);
-// 	printf("\n");
-// 	while (i < game->hei)
-// 	{
-// 		printf("%s\n", game->map[i]);
-// 		i++;
-// 	}
-// 	printf("---------------------------------------------\n");
-// }
-
-/*
- * function:	파일을 읽어 맵의 정보를 확인합니다.
- * return:		None
- * 
- * map information 초기화
- * map 초기화
- * 에러 체크
- */
 void	read_map(char *filename, t_game *game)
 {
 	int		fd;
@@ -55,13 +24,8 @@ void	read_map(char *filename, t_game *game)
 	check_max_wid(game, line, fd);
 	init_map(game, fd, filename);
 	check_init_data(game);
-	// print_test(game);
 }
 
-/*
- * function:	맵의 최대 너비를 확인 후 저장합니다.
- * return:		None
- */
 void	check_max_wid(t_game *game, char *line, int fd)
 {
 	int	i;
@@ -84,13 +48,6 @@ void	check_max_wid(t_game *game, char *line, int fd)
 	}
 }
 
-/*
- * function:	game 구조체의 map을 초기화합니다.
- * return:		None
- * 
- * map은 이차원 배열이며, 각 문자열은 맵의 최대 너비만큼 할당받습니다.
- * 최대 너비보다 짧은 문자열의 경우 나머지 부분은 공백으로 채웁니다.
- */
 void	init_map(t_game *game, int fd, char *filename)
 {
 	size_t	i;
@@ -120,10 +77,6 @@ void	init_map(t_game *game, int fd, char *filename)
 	close(fd);
 }
 
-/*
- * function:	맵이 있는 곳까지 파일을 넘깁니다.
- * return:		맵의 첫 번째 문자열
- */
 char	*jump_to_map(int fd)
 {
 	char	*line;

@@ -27,12 +27,6 @@ void	init_game(t_game *game)
 	game->d_flag = 0;
 }
 
-/*
- * function:	공백 문자 여부를 확인
- * return:		True/False
- * 
- * 개행은 확인하지 않습니다.
- */
 int	is_whitespace(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\v'
@@ -41,7 +35,6 @@ int	is_whitespace(char c)
 	return (0);
 }
 
-// 파일을 한 줄 읽은 후 뒤 공백을 제거한 문자열을 반환합니다. 앞의 공백은 따로 처리하지 않습니다.
 char	*get_valid_line(int fd)
 {
 	char	*ret_str;
@@ -70,7 +63,6 @@ char	*get_valid_line(int fd)
 	return (ret_str);
 }
 
-// 단순히 문자열 앞의 공백만을 제거한 후 반환합니다. 따로 기존 문자열에 대해 할당 해제는 하지 않습니다.
 char	*erase_space(char *line)
 {
 	int		i;
@@ -83,10 +75,6 @@ char	*erase_space(char *line)
 	return (ret_str);
 }
 
-/*
- * function:	문자열의 여백에 맵의 최대 너비까지 공백을 추가합니다.
- * return:		None
- */
 void	space_adder(t_game *game, char *map, char *line)
 {
 	size_t	len;

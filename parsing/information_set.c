@@ -12,10 +12,6 @@
 
 #include "../includes/parsing.h"
 
-/*
- * function:	texture, color 등의 Type을 확인하고 관련 구조체에 저장합니다.
- * return:		map의 시작 문자열
- */
 char	*type_identifier(t_game *game, int fd)
 {
 	char	*line;
@@ -40,10 +36,6 @@ char	*type_identifier(t_game *game, int fd)
 	return (NULL);
 }
 
-/*
- * function:	색 정보를 int형으로 반환하여 구조체에 저장합니다.
- * return:		color 구조체 포인터
- */
 t_color	*set_color(char *line)
 {
 	t_color	*color;
@@ -65,7 +57,6 @@ t_color	*set_color(char *line)
 	return (color);
 }
 
-// 컴마의 개수 및 숫자가 아닌 경우를 확인합니다.
 void	check_color(char *line)
 {
 	int	len;
@@ -85,10 +76,6 @@ void	check_color(char *line)
 		print_err("Invalid Color code\n");
 }
 
-/*
- * function:	타입에 맞는 데이터를 초기화합니다.
- * return:		TRUE/FALSE
- */
 int	set_data(t_game *game, char *line)
 {
 	if (!ft_strncmp("NO ", line, 3))
