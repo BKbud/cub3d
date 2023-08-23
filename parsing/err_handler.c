@@ -19,7 +19,6 @@ void	print_err(char *msg)
 	exit(1);
 }
 
-// 파일의 확장자를 확인합니다.
 void	check_extension(char *filename)
 {
 	int	idx;
@@ -31,10 +30,6 @@ void	check_extension(char *filename)
 		print_err("File extension error\n");
 }
 
-/*
- * function:	초기화된 구조체 값의 유효성을 확인합니다.
- * return:		None
- */
 void	check_init_data(t_game *game)
 {
 	if (game->hei <= 0 || game->wid <= 0)
@@ -51,10 +46,6 @@ void	check_init_data(t_game *game)
 	map_check(game);
 }
 
-/*
- * function:	맵에 문자들을 하나씩 확인합니다. 또한 캐릭터의 방향을 저장합니다.
- * return:		None
- */
 void	map_check(t_game *game)
 {
 	size_t	i;
@@ -84,10 +75,6 @@ void	map_check(t_game *game)
 	validation_check(game);
 }
 
-/*
- * function:	맵의 유효성을 체크합니다.
- * return:		None
- */
 void	validation_check(t_game *game)
 {
 	size_t	i;
