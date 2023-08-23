@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 19:10:52 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/23 17:47:48 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/23 18:30:04 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_vec2	rotate_ray_h(t_vec2 p_dir, int i)
 	return (vec_rot(p_dir, theta));
 }
 
-t_cpoint	raycast_single_close(t_vec2 pos, t_cpoint inter_x, t_cpoint inter_y)
+static t_cpoint	raycast_single_close(t_vec2 pos, t_cpoint inter_x, t_cpoint inter_y)
 {
 	if (!inter_x.c_dir)
 		return (inter_y);
@@ -49,11 +49,10 @@ void	raycast(t_player *player, t_game *game, t_data *data)
 {
 	int	i;
 
-	i = 1;
-	while (i <= W_X)
+	i = 0;
+	while (i < W_X)
 	{
-		draw_wall(player->pos, raycast_single(player->pos, \
-		rotate_ray_h(player->dir, i), game), i - 1, data);
+		draw_wall(player, game, data, i);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:51:22 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/23 17:08:32 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/23 18:30:35 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	}
 }
 
-int	create_rgb(int r, int g, int b)
+static int	create_rgb(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
 }
 
-int	wall_pixel(double d)
+static int	wall_pixel(double d)
 {
 	double	fov_h;
 
@@ -37,7 +37,7 @@ int	wall_pixel(double d)
 	return ((int)(W_Y / fov_h));
 }
 
-void	draw_wall(t_vec2 pos, t_cpoint inter, int index, t_data *data)
+void	draw_wall(t_player *player, t_game *game, t_data *data, int index)
 {
 	int		wpixel;
 	int		y_start;
@@ -45,8 +45,11 @@ void	draw_wall(t_vec2 pos, t_cpoint inter, int index, t_data *data)
 	int		j;
 	double	theta;
 
+	//raycasting 진행
+	t_cpoint	inter = raycast_single(player->pos, rotate_ray_h(player->dir, index + 1), game);
+
 	theta = (deg2rad(FOV) / (W_X - 1)) * (index + 1 - ((double)(W_X + 1) / 2)); // 어안렌즈 왜곡 보정
-	wpixel = wall_pixel(vec_dis(inter.pos, pos) * cos(theta));
+	wpixel = wall_pixel(vec_dis(inter.pos, player->pos) * cos(theta));
 	y_start = (W_Y - wpixel) / 2;
 	y_end = ((W_Y + wpixel) / 2) - 1;
 	j = 0;
@@ -55,12 +58,12 @@ void	draw_wall(t_vec2 pos, t_cpoint inter, int index, t_data *data)
 		if (j < y_start)
 		{
 			//draw sky
-			my_mlx_pixel_put(data, index, j, create_rgb(0x99, 0xCC, 0xFF));
+			my_mlx_pixel_put(data, index, j, create_rgb(game->c_color->red, game->c_color->green, game->c_color->blue));
 		}
 		else if (y_end < j)
 		{
 			//draw floor
-			my_mlx_pixel_put(data, index, j, create_rgb(0xDC, 0xDC, 0xDC));
+			my_mlx_pixel_put(data, index, j, create_rgb(game->f_color->red, game->f_color->green, game->f_color->blue));
 		}
 		else
 		{

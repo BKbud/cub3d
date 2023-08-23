@@ -6,13 +6,13 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:35:25 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/23 17:32:34 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/23 18:30:19 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/cub3d.h"
 
-void	init_player_dir(t_vec2 *dir, char c_dir)
+static void	init_player_dir(t_vec2 *dir, char c_dir)
 {
 	if (c_dir == 'N')
 	{
@@ -36,7 +36,7 @@ void	init_player_dir(t_vec2 *dir, char c_dir)
 	}
 }
 
-void	init_player(t_player *player, char **map, size_t dx, size_t dy)
+static void	init_player(t_player *player, char **map, size_t dx, size_t dy)
 {
 	size_t	i;
 	size_t	j;
