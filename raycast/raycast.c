@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 19:10:52 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/23 18:30:04 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/23 18:33:00 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_vec2	rotate_ray_h(t_vec2 p_dir, int i)
 	return (vec_rot(p_dir, theta));
 }
 
-static t_cpoint	raycast_single_close(t_vec2 pos, t_cpoint inter_x, t_cpoint inter_y)
+static t_cpoint	raycast_single_close(t_vec2 pos, t_cpoint inter_x, \
+t_cpoint inter_y)
 {
 	if (!inter_x.c_dir)
 		return (inter_y);
