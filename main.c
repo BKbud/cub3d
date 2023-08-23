@@ -6,14 +6,13 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:35:25 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/22 15:58:06 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/23 18:30:19 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/parsing.h"
 #include "./includes/cub3d.h"
 
-void	init_player_dir(t_vec2 *dir, char c_dir)
+static void	init_player_dir(t_vec2 *dir, char c_dir)
 {
 	if (c_dir == 'N')
 	{
@@ -37,18 +36,18 @@ void	init_player_dir(t_vec2 *dir, char c_dir)
 	}
 }
 
-void	init_player(t_player *player, char **map)
+static void	init_player(t_player *player, char **map, size_t dx, size_t dy)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	while (i < D_Y)
+	while (i < dy)
 	{
 		j = 0;
-		while (j < D_X)
+		while (j < dx)
 		{
-			if (map[i][j] != '0' && map[i][j] != '1')
+			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
 			{
 				player->pos.x = j + 0.5;
 				player->pos.y = i + 0.5;
@@ -78,7 +77,6 @@ int	main(int ac, char **av)
 
 	//---------------operation-----------------
 	ft_memset(&data, 0, sizeof(t_data));
-
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, W_X, W_Y, "cub3d");
 	data.img = mlx_new_image(data.mlx, W_X, W_Y);
@@ -87,8 +85,8 @@ int	main(int ac, char **av)
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
 	&data.line_length, &data.endian);
 
-	init_player(&player, game->map);
-	raycast(&player, (const char**)game->map, &data);
+	init_player(&player, game->map, game->wid, game->hei);
+	raycast(&player, game, &data);
 
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_loop(data.mlx);
