@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 13:32:35 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/24 16:04:15 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/24 16:18:06 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,20 @@ void	player_move(t_player *player, int keycode)
 	if (keycode == KEY_W)
 		player->pos = vec_plus(player->pos, vec_mul(player->dir, D_MOV));
 	else if (keycode == KEY_A)
-		player->pos = vec_plus(player->pos, vec_mul(vec_rot(player->dir, -M_PI_2), D_MOV));
+	{
+		player->pos = vec_plus(player->pos, \
+		vec_mul(vec_rot(player->dir, -M_PI_2), D_MOV));
+	}
 	else if (keycode == KEY_S)
-		player->pos = vec_plus(player->pos, vec_mul(vec_rot(player->dir, M_PI), D_MOV));
+	{
+		player->pos = vec_plus(player->pos, \
+		vec_mul(vec_rot(player->dir, M_PI), D_MOV));
+	}
 	else if (keycode == KEY_D)
-		player->pos = vec_plus(player->pos, vec_mul(vec_rot(player->dir, M_PI_2), D_MOV));
+	{
+		player->pos = vec_plus(player->pos, \
+		vec_mul(vec_rot(player->dir, M_PI_2), D_MOV));
+	}
 }
 
 void	player_rotate(t_player *player, int keycode)
@@ -59,12 +68,13 @@ int	if_collision(t_vec2 pos, char **map, size_t wid, size_t hei)
 	x2 = pos.x + COL;
 	y1 = pos.y - COL;
 	y2 = pos.y + COL;
-	if (0 <= x1 && x1 < wid && 0 <= x2 && x2 < wid && 0 <= y1 && y1 < hei && 0 <= y2 && y2 < hei)
+	if (0 <= x1 && x1 < wid && 0 <= x2 && x2 < wid && 0 <= y1 \
+	&& y1 < hei && 0 <= y2 && y2 < hei)
 	{
-		if (map[(int)y1][(int)x1] != '1' && map[(int)y1][(int)x1] != ' ' &&\
-		 map[(int)y1][(int)x2] != '1' && map[(int)y1][(int)x2] != ' ' &&\
-		 map[(int)y2][(int)x1] != '1' && map[(int)y2][(int)x1] != ' ' &&\
-		 map[(int)y2][(int)x2] != '1' && map[(int)y2][(int)x2] != ' ')
+		if (map[(int)y1][(int)x1] != '1' && map[(int)y1][(int)x1] != ' ' \
+		&& map[(int)y1][(int)x2] != '1' && map[(int)y1][(int)x2] != ' ' \
+		&& map[(int)y2][(int)x1] != '1' && map[(int)y2][(int)x1] != ' ' \
+		&& map[(int)y2][(int)x2] != '1' && map[(int)y2][(int)x2] != ' ')
 			return (0);
 	}
 	return (1);
