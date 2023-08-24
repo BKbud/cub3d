@@ -1,7 +1,7 @@
-NO ./images/NO.xpn
-SO ./images/SO.xpm
-WE ./images/WE.xpm
-EA ./images/EA.xpm
+NO ./images/north_texture.xpm
+SO ./images/south_texture.xpm
+WE ./images/west_texture.xpm
+EA ./images/east_texture.xpm
 F 00,153,15
 C 255,255,255
 

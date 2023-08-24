@@ -28,6 +28,16 @@
 # define EVENT_KEY_EXIT 17
 # define KEY_ESC 53
 
+typedef struct	s_texture {
+	void				*img;
+	unsigned int		*addr;
+	int					bits_per_pixel;
+	int					line_length;
+	int					endian;
+	int					width;
+	int					height;
+}	t_texture;
+
 typedef struct s_data
 {
 	t_game		*game;
@@ -39,6 +49,10 @@ typedef struct s_data
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	t_texture	*n_tex;
+	t_texture	*s_tex;
+	t_texture	*e_tex;
+	t_texture	*w_tex;
 }	t_data;
 
 typedef struct s_cpoint
@@ -55,5 +69,9 @@ t_cpoint	raycast_single_step_x(t_vec2 pos, t_vec2 dir, t_game *game);
 t_cpoint	raycast_single_step_y(t_vec2 pos, t_vec2 dir, t_game *game);
 double		deg2rad(double deg);
 int			is_zero(double d);
+
+void		init_tex_wall(t_data *data, t_game *game);
+t_texture	*new_tex(t_data *data, char *filename);
+int			get_tex_color(t_data *data, t_cpoint inter, int wy, int y_start, int y_end);
 
 #endif

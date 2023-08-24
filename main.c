@@ -73,6 +73,7 @@ int	main(int ac, char **av)
 	data.game = game;
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, W_X, W_Y, "cub3d");
+	init_tex_wall(&data, game);
 	mlx_hook(data.win, EVENT_KEY_PRESS, 0, key_press, &data);
 	mlx_hook(data.win, EVENT_KEY_RELEASE, 0, key_release, &data);
 	mlx_hook(data.win, EVENT_KEY_EXIT, 0, key_exit, &data);

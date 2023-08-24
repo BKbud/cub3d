@@ -68,7 +68,7 @@ void	draw_wall(t_player *player, t_game *game, t_data *data, int index)
 		else
 		{
 			//draw wall
-			my_mlx_pixel_put(data, index, j, create_rgb(0x80, 0x80, 0x80));
+			my_mlx_pixel_put(data, index, j, get_tex_color(data, inter, j, y_start, y_end));
 		}
 		j++;
 	}
