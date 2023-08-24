@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:28:18 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/24 14:20:19 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/24 14:32:09 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define FOV 60
 # define EPS 1e-06
 # define EVENT_KEY_PRESS 2
+# define EVENT_KEY_RELEASE 3
 # define EVENT_KEY_EXIT 17
 # define KEY_ESC 53
 

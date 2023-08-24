@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:35:25 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/24 14:20:09 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/24 14:39:27 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,15 @@ int	key_press(int keycode, t_data *data)
 		mlx_destroy_window(data->mlx, data->win);
 		exit (0);
 	}
-	else if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S || keycode == KEY_D)
-		player_move(&data->player, keycode);
-	else if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
-		player_rotate(&data->player, keycode);
+	else if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S || keycode == KEY_D || keycode == KEY_LEFT || keycode == KEY_RIGHT)
+		player_key_on(&data->player, keycode);
+	return (0);
+}
+
+int	key_release(int keycode, t_data *data)
+{
+	if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S || keycode == KEY_D || keycode == KEY_LEFT || keycode == KEY_RIGHT)
+		player_key_off(&data->player, keycode);
 	return (0);
 }
 
@@ -40,6 +45,7 @@ int	main_loop(t_data *data)
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
 	&data->line_length, &data->endian);
 	// raycast
+	player_set(&data->player);
 	raycast(&data->player, data->game, data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img);
@@ -68,6 +74,7 @@ int	main(int ac, char **av)
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, W_X, W_Y, "cub3d");
 	mlx_hook(data.win, EVENT_KEY_PRESS, 0, key_press, &data);
+	mlx_hook(data.win, EVENT_KEY_RELEASE, 0, key_release, &data);
 	mlx_hook(data.win, EVENT_KEY_EXIT, 0, key_exit, &data);
 	mlx_loop_hook(data.mlx, main_loop, &data);
 	mlx_loop(data.mlx);
