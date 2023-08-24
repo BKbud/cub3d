@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 17:36:58 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/23 17:46:52 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/24 15:32:31 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_cpoint *inter)
 		x++;
 		t = (x - pos.x) / dir.x;
 		inter->pos.y = pos.y + t * dir.y;
-		if (0 <= inter->pos.y && inter->pos.y < game->hei)
+		if (0 <= inter->pos.y && inter->pos.y < game->hei && 0 <= x && x < (int)game->wid)
 		{
 			if (game->map[(int)inter->pos.y][x] == '1')
 			{
@@ -49,7 +49,7 @@ t_cpoint *inter)
 	{
 		t = (x - pos.x) / dir.x;
 		inter->pos.y = pos.y + t * dir.y;
-		if (0 <= inter->pos.y && inter->pos.y < game->hei)
+		if (0 <= inter->pos.y && inter->pos.y < game->hei && 0 <= x - 1 && x - 1 < (int)game->wid)
 		{
 			if (game->map[(int)inter->pos.y][x - 1] == '1')
 			{
