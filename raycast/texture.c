@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 16:15:56 by bojung            #+#    #+#             */
-/*   Updated: 2023/08/24 17:49:40 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/24 18:08:28 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	get_tex_color(t_data *data, t_cpoint inter, int wy, int y_start, int y_end)
 	if (inter.c_dir == 'E')
 	{
 		tex = data->e_tex;
-		tx = (int)((1 - (inter.pos.y - floor(inter.pos.y))) * tex->width);
+		tx = (int)((ceil(inter.pos.y) - inter.pos.y) * tex->width);
 	}
 	if (inter.c_dir == 'W')
 	{
@@ -31,7 +31,7 @@ int	get_tex_color(t_data *data, t_cpoint inter, int wy, int y_start, int y_end)
 	if (inter.c_dir == 'N')
 	{
 		tex = data->n_tex;
-		tx = (int)((1 - (inter.pos.x - floor(inter.pos.x))) * tex->width);
+		tx = (int)((ceil(inter.pos.x) - inter.pos.x) * tex->width);
 	}
 	if (inter.c_dir == 'S')
 	{
