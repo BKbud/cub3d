@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 12:58:03 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/24 14:30:46 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/24 16:16:57 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	init_player(t_player *player, char **map, size_t dx, size_t dy)
 		j = 0;
 		while (j < dx)
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
+			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' \
+			|| map[i][j] == 'W')
 			{
 				player->pos.x = j + 0.5;
 				player->pos.y = i + 0.5;
