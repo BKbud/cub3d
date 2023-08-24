@@ -1,7 +1,7 @@
-NO ./images/north_texture.xpm
-SO ./images/south_texture.xpm
-WE ./images/west_texture.xpm
-EA ./images/east_texture.xpm
+NO ./images/brick_texture.xpm
+SO ./images/brick_texture.xpm
+WE ./images/brick_texture.xpm
+EA ./images/brick_texture.xpm
 
 F 220,220,220
 C 153,204,255

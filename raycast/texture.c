@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 16:15:56 by bojung            #+#    #+#             */
-/*   Updated: 2023/08/24 18:08:28 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/24 18:18:58 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	get_tex_color(t_data *data, t_cpoint inter, int wy, int y_start, int y_end)
 		tex = data->s_tex;
 		tx = (int)((inter.pos.x - floor(inter.pos.x)) * tex->width);
 	}
-	ty = (int)((double)(wy - y_start) * tex->height / (y_end - y_start));
+	ty = (int)((double)(wy - y_start) * tex->height / (y_end - y_start + 1));
 	return (tex->addr[tex->line_length / (tex->bits_per_pixel / 8) * ty + tx]);
 }
 
