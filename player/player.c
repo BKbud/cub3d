@@ -6,12 +6,11 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 13:32:35 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/24 14:38:43 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/24 16:04:15 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "player.h"
-#include <stdio.h>
 
 void	player_move(t_player *player, int keycode)
 {
@@ -33,40 +32,49 @@ void	player_rotate(t_player *player, int keycode)
 		player->dir = vec_rot(player->dir, D_ROT);
 }
 
-void	player_key_on(t_player *player, int keycode)
+void	player_key(t_player *player, int keycode, int key)
 {
 	if (keycode == KEY_W)
-		player->key.key_w = 1;
+		player->key.key_w = key;
 	else if (keycode == KEY_A)
-		player->key.key_a = 1;
+		player->key.key_a = key;
 	else if (keycode == KEY_S)
-		player->key.key_s = 1;
+		player->key.key_s = key;
 	else if (keycode == KEY_D)
-		player->key.key_d = 1;
+		player->key.key_d = key;
 	else if (keycode == KEY_LEFT)
-		player->key.key_left = 1;
+		player->key.key_left = key;
 	else if (keycode == KEY_RIGHT)
-		player->key.key_right = 1;
+		player->key.key_right = key;
 }
 
-void	player_key_off(t_player *player, int keycode)
+int	if_collision(t_vec2 pos, char **map, size_t wid, size_t hei)
 {
-	if (keycode == KEY_W)
-		player->key.key_w = 0;
-	else if (keycode == KEY_A)
-		player->key.key_a = 0;
-	else if (keycode == KEY_S)
-		player->key.key_s = 0;
-	else if (keycode == KEY_D)
-		player->key.key_d = 0;
-	else if (keycode == KEY_LEFT)
-		player->key.key_left = 0;
-	else if (keycode == KEY_RIGHT)
-		player->key.key_right = 0;
+	double	x1;
+	double	x2;
+	double	y1;
+	double	y2;
+
+	x1 = pos.x - COL;
+	x2 = pos.x + COL;
+	y1 = pos.y - COL;
+	y2 = pos.y + COL;
+	if (0 <= x1 && x1 < wid && 0 <= x2 && x2 < wid && 0 <= y1 && y1 < hei && 0 <= y2 && y2 < hei)
+	{
+		if (map[(int)y1][(int)x1] != '1' && map[(int)y1][(int)x1] != ' ' &&\
+		 map[(int)y1][(int)x2] != '1' && map[(int)y1][(int)x2] != ' ' &&\
+		 map[(int)y2][(int)x1] != '1' && map[(int)y2][(int)x1] != ' ' &&\
+		 map[(int)y2][(int)x2] != '1' && map[(int)y2][(int)x2] != ' ')
+			return (0);
+	}
+	return (1);
 }
 
-void	player_set(t_player *player)
+void	player_set(t_player *player, char **map, size_t wid, size_t hei)
 {
+	t_vec2	pos_init;
+
+	pos_init = player->pos;
 	if (player->key.key_w)
 		player_move(player, KEY_W);
 	if (player->key.key_a)
@@ -79,4 +87,6 @@ void	player_set(t_player *player)
 		player_rotate(player, KEY_LEFT);
 	if (player->key.key_right)
 		player_rotate(player, KEY_RIGHT);
+	if (if_collision(player->pos, map, wid, hei))
+		player->pos = pos_init;
 }

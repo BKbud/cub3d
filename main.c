@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:35:25 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/24 14:39:27 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/24 15:47:35 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ int	key_press(int keycode, t_data *data)
 		exit (0);
 	}
 	else if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S || keycode == KEY_D || keycode == KEY_LEFT || keycode == KEY_RIGHT)
-		player_key_on(&data->player, keycode);
+		player_key(&data->player, keycode, 1);
 	return (0);
 }
 
 int	key_release(int keycode, t_data *data)
 {
 	if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S || keycode == KEY_D || keycode == KEY_LEFT || keycode == KEY_RIGHT)
-		player_key_off(&data->player, keycode);
+		player_key(&data->player, keycode, 0);
 	return (0);
 }
 
@@ -45,7 +45,7 @@ int	main_loop(t_data *data)
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
 	&data->line_length, &data->endian);
 	// raycast
-	player_set(&data->player);
+	player_set(&data->player, data->game->map, data->game->wid, data->game->hei);
 	raycast(&data->player, data->game, data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img);
