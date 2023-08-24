@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bojung <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 16:15:56 by bojung            #+#    #+#             */
-/*   Updated: 2023/08/24 16:15:57 by bojung           ###   ########.fr       */
+/*   Updated: 2023/08/24 17:49:40 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	get_tex_color(t_data *data, t_cpoint inter, int wy, int y_start, int y_end)
 	if (inter.c_dir == 'E')
 	{
 		tex = data->e_tex;
-		tx = (int)((inter.pos.y - floor(inter.pos.y)) * tex->width);
+		tx = (int)((1 - (inter.pos.y - floor(inter.pos.y))) * tex->width);
 	}
 	if (inter.c_dir == 'W')
 	{
@@ -31,7 +31,7 @@ int	get_tex_color(t_data *data, t_cpoint inter, int wy, int y_start, int y_end)
 	if (inter.c_dir == 'N')
 	{
 		tex = data->n_tex;
-		tx = (int)((inter.pos.x - floor(inter.pos.x)) * tex->width);
+		tx = (int)((1 - (inter.pos.x - floor(inter.pos.x))) * tex->width);
 	}
 	if (inter.c_dir == 'S')
 	{
@@ -39,7 +39,7 @@ int	get_tex_color(t_data *data, t_cpoint inter, int wy, int y_start, int y_end)
 		tx = (int)((inter.pos.x - floor(inter.pos.x)) * tex->width);
 	}
 	ty = (int)((double)(wy - y_start) * tex->height / (y_end - y_start));
-	return (tex->addr[tex->line_length / (tex->bits_per_pixel / 8) * tx + ty]);
+	return (tex->addr[tex->line_length / (tex->bits_per_pixel / 8) * ty + tx]);
 }
 
 t_texture	*new_tex(t_data *data, char *filename)
