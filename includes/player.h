@@ -30,7 +30,7 @@
 typedef struct s_key
 {
 	int	key_w;
-	int key_a;
+	int	key_a;
 	int	key_s;
 	int	key_d;
 	int	key_left;

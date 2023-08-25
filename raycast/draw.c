@@ -39,15 +39,17 @@ static int	wall_pixel(double d)
 
 void	draw_wall(t_player *player, t_game *game, t_data *data, int index)
 {
-	int		wpixel;
-	int		y_start;
-	int		y_end;
-	int		j;
-	double	theta;
+	int			wpixel;
+	int			y_start;
+	int			y_end;
+	int			j;
+	double		theta;
+	t_cpoint	inter;
 
-	t_cpoint	inter = raycast_single(player->pos, rotate_ray_h(player->dir, index + 1), game);
-
-	theta = (deg2rad(FOV) / (W_X - 1)) * (index + 1 - ((double)(W_X + 1) / 2)); // 어안렌즈 왜곡 보정
+	inter = raycast_single(player->pos,
+			rotate_ray_h(player->dir, index + 1), game);
+	theta = (deg2rad(FOV) / (W_X - 1))
+		* (index + 1 - ((double)(W_X + 1) / 2));
 	wpixel = wall_pixel(vec_dis(inter.pos, player->pos) * cos(theta));
 	y_start = (W_Y - wpixel) / 2;
 	y_end = ((W_Y + wpixel) / 2) - 1;
@@ -55,20 +57,14 @@ void	draw_wall(t_player *player, t_game *game, t_data *data, int index)
 	while (j < W_Y)
 	{
 		if (j < y_start)
-		{
-			//draw sky
-			my_mlx_pixel_put(data, index, j, create_rgb(game->c_color->red, game->c_color->green, game->c_color->blue));
-		}
+			my_mlx_pixel_put(data, index, j, create_rgb(game->c_color->red,
+					game->c_color->green, game->c_color->blue));
 		else if (y_end < j)
-		{
-			//draw floor
-			my_mlx_pixel_put(data, index, j, create_rgb(game->f_color->red, game->f_color->green, game->f_color->blue));
-		}
+			my_mlx_pixel_put(data, index, j, create_rgb(game->f_color->red,
+					game->f_color->green, game->f_color->blue));
 		else
-		{
-			//draw wall
-			my_mlx_pixel_put(data, index, j, get_tex_color(data, inter, j - y_start, y_end - y_start));
-		}
+			my_mlx_pixel_put(data, index, j,
+				get_tex_color(data, inter, j - y_start, y_end - y_start));
 		j++;
 	}
 }

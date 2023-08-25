@@ -73,5 +73,5 @@ void	init_tex_wall(t_data *data, t_game *game)
 	data->e_tex = new_tex(data, game->e_texture);
 	data->w_tex = new_tex(data, game->w_texture);
 	if (!data->n_tex || !data->s_tex || !data->e_tex || !data->w_tex)
-		print_err("File does not exist\n");
+		print_err("Could not open the file\n");
 }

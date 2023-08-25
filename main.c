@@ -19,14 +19,16 @@ int	key_press(int keycode, t_data *data)
 		mlx_destroy_window(data->mlx, data->win);
 		exit (0);
 	}
-	else if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S || keycode == KEY_D || keycode == KEY_LEFT || keycode == KEY_RIGHT)
+	else if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S
+		|| keycode == KEY_D || keycode == KEY_LEFT || keycode == KEY_RIGHT)
 		player_key(&data->player, keycode, 1);
 	return (0);
 }
 
 int	key_release(int keycode, t_data *data)
 {
-	if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S || keycode == KEY_D || keycode == KEY_LEFT || keycode == KEY_RIGHT)
+	if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S
+		|| keycode == KEY_D || keycode == KEY_LEFT || keycode == KEY_RIGHT)
 		player_key(&data->player, keycode, 0);
 	return (0);
 }
@@ -44,8 +46,8 @@ int	main_loop(t_data *data)
 		exit (1);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
 	&data->line_length, &data->endian);
-	// raycast
-	player_set(&data->player, data->game->map, data->game->wid, data->game->hei);
+	player_set(&data->player, data->game->map, \
+		data->game->wid, data->game->hei);
 	raycast(&data->player, data->game, data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img);
@@ -57,7 +59,6 @@ int	main(int ac, char **av)
 	t_game		*game;
 	t_data		data;
 
-	//--------------map parsing----------------
 	if (ac != 2)
 		print_err("Map file missing\n");
 	game = (t_game *)malloc(sizeof(t_game));
@@ -66,8 +67,6 @@ int	main(int ac, char **av)
 	check_extension(av[1]);
 	init_game(game);
 	read_map(av[1], game);
-
-	//---------------operation-----------------
 	ft_memset(&data, 0, sizeof(t_data));
 	init_player(&data.player, game->map, game->wid, game->hei);
 	data.game = game;

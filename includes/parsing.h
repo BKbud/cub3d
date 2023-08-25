@@ -43,7 +43,7 @@ typedef struct s_game {
 }	t_game;
 
 // mapset.c
-void 	read_map(char *filename, t_game *game);
+void	read_map(char *filename, t_game *game);
 void	check_max_wid(t_game *game, char *line, int fd);
 void	init_map(t_game *game, int fd, char *filename);
 char	*jump_to_map(int fd);

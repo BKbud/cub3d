@@ -28,7 +28,7 @@
 # define EVENT_KEY_EXIT 17
 # define KEY_ESC 53
 
-typedef struct	s_texture {
+typedef struct s_texture {
 	void				*img;
 	unsigned int		*addr;
 	int					bits_per_pixel;
