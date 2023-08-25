@@ -6,7 +6,7 @@
 #    By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 13:35:33 by hanryu            #+#    #+#              #
-#    Updated: 2023/08/24 14:10:13 by hanryu           ###   ########.fr        #
+#    Updated: 2023/08/25 15:08:58 by hanryu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,15 @@ UTILS_SRCS = vec.c utils.c
 PLAYER_SRCDIR = ./player
 PLAYER_SRCS = init_player.c player.c
 
+MINIMAP_SRCDIR = ./minimap
+MINIMAP_SRCS = minimap.c
+
 SRCS =	$(MAIN_SRC)\
 		$(addprefix $(PARSE_SRCDIR)/, $(PARSE_SRCS))\
 		$(addprefix $(RAYCAST_SRCDIR)/, $(RAYCAST_SRCS))\
 		$(addprefix $(UTILS_SRCDIR)/, $(UTILS_SRCS))\
-		$(addprefix $(PLAYER_SRCDIR)/, $(PLAYER_SRCS))
+		$(addprefix $(PLAYER_SRCDIR)/, $(PLAYER_SRCS))\
+		$(addprefix $(MINIMAP_SRCDIR)/, $(MINIMAP_SRCS))
 
 OBJS = $(SRCS:.c=.o)
 

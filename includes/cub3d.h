@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:28:18 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/24 16:11:37 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/25 16:52:31 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define EVENT_KEY_RELEASE 3
 # define EVENT_KEY_EXIT 17
 # define KEY_ESC 53
+# define MAP_SCALE 10
 
 typedef struct	s_texture {
 	void				*img;
@@ -73,5 +74,7 @@ int			is_zero(double d);
 void		init_tex_wall(t_data *data, t_game *game);
 t_texture	*new_tex(t_data *data, char *filename);
 int			get_tex_color(t_data *data, t_cpoint inter, int wy, int y_start, int y_end);
+
+void		minimap(t_player *player, t_game *game, t_data *data);
 
 #endif
