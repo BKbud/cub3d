@@ -45,7 +45,6 @@ void	draw_wall(t_player *player, t_game *game, t_data *data, int index)
 	int		j;
 	double	theta;
 
-	//raycasting 진행
 	t_cpoint	inter = raycast_single(player->pos, rotate_ray_h(player->dir, index + 1), game);
 
 	theta = (deg2rad(FOV) / (W_X - 1)) * (index + 1 - ((double)(W_X + 1) / 2)); // 어안렌즈 왜곡 보정
@@ -68,7 +67,7 @@ void	draw_wall(t_player *player, t_game *game, t_data *data, int index)
 		else
 		{
 			//draw wall
-			my_mlx_pixel_put(data, index, j, get_tex_color(data, inter, j, y_start, y_end));
+			my_mlx_pixel_put(data, index, j, get_tex_color(data, inter, j - y_start, y_end - y_start));
 		}
 		j++;
 	}

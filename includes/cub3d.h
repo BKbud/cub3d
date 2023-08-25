@@ -72,6 +72,6 @@ int			is_zero(double d);
 
 void		init_tex_wall(t_data *data, t_game *game);
 t_texture	*new_tex(t_data *data, char *filename);
-int			get_tex_color(t_data *data, t_cpoint inter, int wy, int y_start, int y_end);
+int			get_tex_color(t_data *data, t_cpoint inter, int wy, int wheight);
 
 #endif

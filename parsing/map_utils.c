@@ -51,7 +51,8 @@ char	*get_valid_line(int fd)
 	len = ft_strlen(line);
 	while (is_whitespace(line[++i]))
 		line[i] = ' ';
-	while (len - 1 >= 0 && (is_whitespace(line[len - 1]) || line[len - 1] == '\n'))
+	while (len - 1 >= 0 && (is_whitespace(line[len - 1])
+			|| line[len - 1] == '\n'))
 		len--;
 	if (len == 0)
 		len = 1;

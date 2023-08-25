@@ -12,10 +12,9 @@
 
 #include "cub3d.h"
 
-int	get_tex_color(t_data *data, t_cpoint inter, int wy, int y_start, int y_end)
+int	get_tex_color(t_data *data, t_cpoint inter, int wy, int wheight)
 {
 	int			tx;
-	int			ty;
 	t_texture	*tex;
 
 	if (inter.c_dir == 'E')
@@ -38,25 +37,26 @@ int	get_tex_color(t_data *data, t_cpoint inter, int wy, int y_start, int y_end)
 		tex = data->s_tex;
 		tx = (int)((inter.pos.x - floor(inter.pos.x)) * tex->width);
 	}
-	ty = (int)((double)(wy - y_start) * tex->height / (y_end - y_start + 1));
-	return (tex->addr[tex->line_length / (tex->bits_per_pixel / 8) * ty + tx]);
+	return (tex->addr[tex->line_length / (tex->bits_per_pixel / 8)
+			* (int)(wy * tex->height / (wheight + 1)) + tx]);
 }
 
 t_texture	*new_tex(t_data *data, char *filename)
 {
-	t_texture *tex;
+	t_texture	*tex;
 
 	tex = malloc(sizeof(t_texture));
 	if (!tex)
 		return (NULL);
-	tex->img = mlx_xpm_file_to_image(data->mlx, filename, &tex->width, &tex->height);
+	tex->img = mlx_xpm_file_to_image
+		(data->mlx, filename, &tex->width, &tex->height);
 	if (!tex->img)
 	{
 		free(tex);
 		return (NULL);
 	}
-	tex->addr = (unsigned int*)mlx_get_data_addr(tex->img, &tex->bits_per_pixel,
-		&tex->line_length, &tex->endian);
+	tex->addr = (unsigned int *)mlx_get_data_addr(tex->img,
+			&tex->bits_per_pixel, &tex->line_length, &tex->endian);
 	if (!tex->addr)
 	{
 		free(tex->img);

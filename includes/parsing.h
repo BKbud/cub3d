@@ -42,8 +42,6 @@ typedef struct s_game {
 	t_color	*c_color;
 }	t_game;
 
-// main.c
-
 // mapset.c
 void 	read_map(char *filename, t_game *game);
 void	check_max_wid(t_game *game, char *line, int fd);
