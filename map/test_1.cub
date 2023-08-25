@@ -1,7 +1,7 @@
-NO ./images/north_texture.xpm
-SO ./images/south_texture.xpm
-WE ./images/west_texture.xpm
-EA ./images/east_texture.xpm
+NO ./images/north_ko.xpm
+SO ./images/south_ko.xpm
+WE ./images/west_ko.xpm
+EA ./images/east_ko.xpm
 F 110,153,15 
 C 255,255,255
 
