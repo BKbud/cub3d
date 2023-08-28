@@ -3,8 +3,8 @@ SO ./images/brick_texture.xpm
 WE ./images/brick_texture.xpm
 EA ./images/brick_texture.xpm
 
-F 220,220,220
-C 153,204,255
+F 220,220,100
+C -153,204,255
 
 11111111
 10100001
