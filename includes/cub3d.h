@@ -26,6 +26,7 @@
 # define EVENT_KEY_PRESS 2
 # define EVENT_KEY_RELEASE 3
 # define EVENT_KEY_EXIT 17
+# define KEY_SPACE 49
 # define KEY_ESC 53
 # define MAP_SCALE 10
 
@@ -54,12 +55,14 @@ typedef struct s_data
 	t_texture	*s_tex;
 	t_texture	*e_tex;
 	t_texture	*w_tex;
+	t_texture	*cd_tex;
 }	t_data;
 
 typedef struct s_cpoint
 {
 	t_vec2	pos;
 	char	c_dir;
+	int		door_flag;
 }	t_cpoint;
 
 void		raycast(t_player *player, t_game *game, t_data *data);
@@ -73,7 +76,10 @@ int			is_zero(double d);
 
 void		init_tex_wall(t_data *data, t_game *game);
 t_texture	*new_tex(t_data *data, char *filename);
+int			get_tex_col(t_cpoint inter, t_texture *tex);
 int			get_tex_color(t_data *data, t_cpoint inter, int wy, int wheight);
+void		open_door(t_data *data);
+void		close_door(t_data *data);
 
 void		minimap(t_player *player, t_game *game, t_data *data);
 

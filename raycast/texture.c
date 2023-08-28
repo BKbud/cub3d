@@ -12,31 +12,40 @@
 
 #include "cub3d.h"
 
+int	get_tex_col(t_cpoint inter, t_texture *tex)
+{
+	int	tx;
+
+	tx = 0;
+	if (inter.c_dir == 'E')
+		tx = (int)((ceil(inter.pos.y) - inter.pos.y) * tex->width);
+	if (inter.c_dir == 'W')
+		tx = (int)((inter.pos.y - floor(inter.pos.y)) * tex->width);
+	if (inter.c_dir == 'N')
+		tx = (int)((ceil(inter.pos.x) - inter.pos.x) * tex->width);
+	if (inter.c_dir == 'S')
+		tx = (int)((inter.pos.x - floor(inter.pos.x)) * tex->width);
+	return (tx);
+}
+
 int	get_tex_color(t_data *data, t_cpoint inter, int wy, int wheight)
 {
 	int			tx;
 	t_texture	*tex;
 
-	if (inter.c_dir == 'E')
-	{
+	if (inter.door_flag == 1)
+		tex = data->cd_tex;
+	else if (inter.c_dir == 'E')
 		tex = data->e_tex;
-		tx = (int)((ceil(inter.pos.y) - inter.pos.y) * tex->width);
-	}
-	if (inter.c_dir == 'W')
-	{
+	else if (inter.c_dir == 'W')
 		tex = data->w_tex;
-		tx = (int)((inter.pos.y - floor(inter.pos.y)) * tex->width);
-	}
-	if (inter.c_dir == 'N')
-	{
+	else if (inter.c_dir == 'N')
 		tex = data->n_tex;
-		tx = (int)((ceil(inter.pos.x) - inter.pos.x) * tex->width);
-	}
-	if (inter.c_dir == 'S')
-	{
+	else if (inter.c_dir == 'S')
 		tex = data->s_tex;
-		tx = (int)((inter.pos.x - floor(inter.pos.x)) * tex->width);
-	}
+	else
+		tex = NULL;
+	tx = get_tex_col(inter, tex);
 	return (tex->addr[tex->line_length / (tex->bits_per_pixel / 8)
 			* (int)(wy * tex->height / (wheight + 1)) + tx]);
 }
@@ -72,6 +81,12 @@ void	init_tex_wall(t_data *data, t_game *game)
 	data->s_tex = new_tex(data, game->s_texture);
 	data->e_tex = new_tex(data, game->e_texture);
 	data->w_tex = new_tex(data, game->w_texture);
+	if (game->door_flag)
+	{
+		data->cd_tex = new_tex(data, game->cd_texture);
+		if (!data->cd_tex)
+			print_err("Could not open the file\n");
+	}
 	if (!data->n_tex || !data->s_tex || !data->e_tex || !data->w_tex)
 		print_err("Could not open the file\n");
 }

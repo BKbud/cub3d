@@ -19,6 +19,8 @@ int	key_press(int keycode, t_data *data)
 		mlx_destroy_window(data->mlx, data->win);
 		exit (0);
 	}
+	else if (keycode == KEY_SPACE)
+		open_door(data);
 	else if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S
 		|| keycode == KEY_D || keycode == KEY_LEFT || keycode == KEY_RIGHT)
 		player_key(&data->player, keycode, 1);

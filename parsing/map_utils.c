@@ -20,6 +20,7 @@ void	init_game(t_game *game)
 	game->s_texture = 0;
 	game->e_texture = 0;
 	game->w_texture = 0;
+	game->cd_texture = 0;
 	game->f_color = 0;
 	game->c_color = 0;
 	game->map = 0;

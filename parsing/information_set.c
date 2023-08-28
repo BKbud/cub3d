@@ -86,12 +86,15 @@ int	set_data(t_game *game, char *line)
 		game->w_texture = erase_space(line + 3);
 	else if (!ft_strncmp("EA ", line, 3))
 		game->e_texture = erase_space(line + 3);
+	else if (!ft_strncmp("CD ", line, 3))
+		game->cd_texture = erase_space(line + 3);
 	else if (!ft_strncmp("F ", line, 2))
 		game->f_color = set_color(line + 2);
 	else if (!ft_strncmp("C ", line, 2))
 		game->c_color = set_color(line + 2);
 	else
 		return (0);
-	game->d_flag++;
+	if (ft_strncmp("CD ", line, 3) != 0)
+		game->d_flag++;
 	return (1);
 }

@@ -24,7 +24,8 @@ PARSE_SRCDIR = ./parsing
 PARSE_SRCS = map_set.c map_utils.c information_set.c err_handler.c get_next_line.c
 
 RAYCAST_SRCDIR = ./raycast
-RAYCAST_SRCS = raycast.c draw.c raycast_single_step_x.c raycast_single_step_y.c texture.c
+RAYCAST_SRCS = raycast.c draw.c raycast_single_step_x.c raycast_single_step_y.c texture.c \
+				door.c
 
 UTILS_SRCDIR = ./utils
 UTILS_SRCS = vec.c utils.c

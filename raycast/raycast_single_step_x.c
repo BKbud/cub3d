@@ -27,8 +27,11 @@ t_cpoint *inter)
 		if (0 <= inter->pos.y && inter->pos.y < game->hei \
 		&& 0 <= x && x < (int)game->wid)
 		{
-			if (game->map[(int)inter->pos.y][x] == '1')
+			if (game->map[(int)inter->pos.y][x] == '1'
+				|| game->map[(int)inter->pos.y][x] == '2')
 			{
+				if (game->map[(int)inter->pos.y][x] == '2')
+					inter->door_flag = 1;
 				inter->pos.x = x;
 				inter->c_dir = 'W';
 				break ;
@@ -53,8 +56,11 @@ t_cpoint *inter)
 		if (0 <= inter->pos.y && inter->pos.y < game->hei \
 		&& 0 <= x - 1 && x - 1 < (int)game->wid)
 		{
-			if (game->map[(int)inter->pos.y][x - 1] == '1')
+			if (game->map[(int)inter->pos.y][x - 1] == '1'
+				|| game->map[(int)inter->pos.y][x - 1] == '2')
 			{
+				if (game->map[(int)inter->pos.y][x - 1] == '2')
+					inter->door_flag = 1;
 				inter->pos.x = x;
 				inter->c_dir = 'E';
 				break ;

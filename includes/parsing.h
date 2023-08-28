@@ -34,10 +34,12 @@ typedef struct s_game {
 	char	**map;
 	char	direction;
 	int		d_flag;
+	int		door_flag;
 	char	*n_texture;
 	char	*s_texture;
 	char	*e_texture;
 	char	*w_texture;
+	char	*cd_texture;
 	t_color	*f_color;
 	t_color	*c_color;
 }	t_game;

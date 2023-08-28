@@ -36,6 +36,8 @@ void	check_init_data(t_game *game)
 		print_err("Uninitialized data exists\n");
 	if (!game->n_texture || !game->s_texture
 		|| !game->e_texture || !game->w_texture)
+		print_err("Uninitialized data exists1\n");
+	if (game->door_flag && !game->cd_texture)
 		print_err("Uninitialized data exists\n");
 	if (!game->c_color || !game->f_color)
 		print_err("Invalid color information exist\n");
@@ -57,7 +59,7 @@ void	map_check(t_game *game)
 		j = -1;
 		while (game->map[i][++j])
 		{
-			if (game->map[i][j] != ' '
+			if (game->map[i][j] != ' ' && game->map[i][j] != '2'
 				&& game->map[i][j] != '0' && game->map[i][j] != '1'
 				&& game->map[i][j] != 'N' && game->map[i][j] != 'S'
 				&& game->map[i][j] != 'E' && game->map[i][j] != 'W')
@@ -68,6 +70,8 @@ void	map_check(t_game *game)
 				game->direction = game->map[i][j];
 				game->d_flag++;
 			}
+			if (game->map[i][j] == '2')
+				game->door_flag = 1;
 		}
 	}
 	if (game->d_flag != 7)
@@ -86,7 +90,7 @@ void	validation_check(t_game *game)
 		j = -1;
 		while (game->map[i][++j])
 		{
-			if (game->map[i][j] == '0'
+			if (game->map[i][j] == '0' || game->map[i][j] == '2'
 				|| game->map[i][j] == 'N' || game->map[i][j] == 'S'
 				|| game->map[i][j] == 'E' || game->map[i][j] == 'W')
 			{
