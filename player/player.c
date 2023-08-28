@@ -71,10 +71,14 @@ int	if_collision(t_vec2 pos, char **map, size_t wid, size_t hei)
 	if (0 <= x1 && x1 < wid && 0 <= x2 && x2 < wid && 0 <= y1 \
 	&& y1 < hei && 0 <= y2 && y2 < hei)
 	{
-		if (map[(int)y1][(int)x1] != '1' && map[(int)y1][(int)x1] != ' ' && map[(int)y1][(int)x1] != '2'\
-		&& map[(int)y1][(int)x2] != '1' && map[(int)y1][(int)x2] != ' '  && map[(int)y1][(int)x2] != '2'\
-		&& map[(int)y2][(int)x1] != '1' && map[(int)y2][(int)x1] != ' ' && map[(int)y2][(int)x1] != '2'\
-		&& map[(int)y2][(int)x2] != '1' && map[(int)y2][(int)x2] != ' ' && map[(int)y2][(int)x2] != '2')
+		if (map[(int)y1][(int)x1] != '1' && map[(int)y1][(int)x1] != ' '
+		&& map[(int)y1][(int)x1] != '2'\
+		&& map[(int)y1][(int)x2] != '1' && map[(int)y1][(int)x2] != ' '
+		&& map[(int)y1][(int)x2] != '2'\
+		&& map[(int)y2][(int)x1] != '1' && map[(int)y2][(int)x1] != ' '
+		&& map[(int)y2][(int)x1] != '2'\
+		&& map[(int)y2][(int)x2] != '1' && map[(int)y2][(int)x2] != ' '
+		&& map[(int)y2][(int)x2] != '2')
 			return (0);
 	}
 	return (1);

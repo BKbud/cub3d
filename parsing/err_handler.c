@@ -46,6 +46,8 @@ void	check_init_data(t_game *game)
 		|| game->f_color->blue > 255 || game->f_color->blue < 0)
 		print_err("Color code range error\n");
 	map_check(game);
+	if (game->d_flag != 7)
+		print_err("Duplicated information or Character exists\n");
 }
 
 void	map_check(t_game *game)
@@ -74,8 +76,6 @@ void	map_check(t_game *game)
 				game->door_flag = 1;
 		}
 	}
-	if (game->d_flag != 7)
-		print_err("Duplicated information or Character exists\n");
 	validation_check(game);
 }
 
