@@ -26,6 +26,7 @@ void	init_game(t_game *game)
 	game->map = 0;
 	game->direction = 0;
 	game->d_flag = 0;
+	game->door_flag = 0;
 }
 
 int	is_whitespace(char c)

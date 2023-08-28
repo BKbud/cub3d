@@ -37,8 +37,6 @@ void	check_init_data(t_game *game)
 	if (!game->n_texture || !game->s_texture
 		|| !game->e_texture || !game->w_texture)
 		print_err("Uninitialized data exists1\n");
-	if (game->door_flag && !game->cd_texture)
-		print_err("Uninitialized data exists\n");
 	if (!game->c_color || !game->f_color)
 		print_err("Invalid color information exist\n");
 	if (game->f_color->red > 255 || game->f_color->red < 0
@@ -48,6 +46,8 @@ void	check_init_data(t_game *game)
 	map_check(game);
 	if (game->d_flag != 7)
 		print_err("Duplicated information or Character exists\n");
+	if (game->door_flag && !game->cd_texture)
+		print_err("Uninitialized data exists\n");
 }
 
 void	map_check(t_game *game)
