@@ -6,7 +6,7 @@
 #    By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 13:35:33 by hanryu            #+#    #+#              #
-#    Updated: 2023/08/25 15:08:58 by hanryu           ###   ########.fr        #
+#    Updated: 2023/08/28 15:04:15 by hanryu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,8 @@ $(NAME) : $(OBJS)
 
 all : $(NAME)
 
+bonus : $(NAME)
+
 clean :
 	make -C $(LIBDIR) clean
 	make -C $(MLXDIR) clean
@@ -77,4 +79,4 @@ fclean :
 
 re : fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re bonus
