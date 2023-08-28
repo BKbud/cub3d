@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 14:24:09 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/28 13:35:59 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/28 14:25:42 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,25 @@ static void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 		(data->bits_per_pixel / 8));
 		*(unsigned int *)dst = color;
 	}
+}
+
+static void	minimap_floor_door(t_game *game, t_data *data, \
+t_vec2 temp, int arr[4])
+{
+	int	i;
+	int	j;
+
+	i = arr[3];
+	j = arr[2];
+	if (game->map[(int)temp.y][(int)temp.x] == '2')
+		my_mlx_pixel_put(data, (int)(i + W_X * 0.75), \
+		(int)(j + W_Y * 0.05), 0x553830);
+	else if (game->map[(int)temp.y][(int)temp.x] == '3')
+		my_mlx_pixel_put(data, (int)(i + W_X * 0.75), \
+		(int)(j + W_Y * 0.05), 0xd6a568);
+	else
+		my_mlx_pixel_put(data, (int)(i + W_X * 0.75), \
+		(int)(j + W_Y * 0.05), 0xdcdcdc);
 }
 
 static void	minimap_in(t_game *game, t_data *data, t_vec2 temp, int arr[4])
@@ -40,8 +59,7 @@ static void	minimap_in(t_game *game, t_data *data, t_vec2 temp, int arr[4])
 			my_mlx_pixel_put(data, (int)(i + W_X * 0.75), \
 			(int)(j + W_Y * 0.05), 0xf9f9f9);
 		else
-			my_mlx_pixel_put(data, (int)(i + W_X * 0.75), \
-			(int)(j + W_Y * 0.05), 0xdcdcdc);
+			minimap_floor_door(game, data, temp, arr);
 	}
 	else
 		my_mlx_pixel_put(data, (int)(i + W_X * 0.75), \

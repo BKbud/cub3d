@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 17:36:58 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/24 16:21:54 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/28 14:26:43 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_cpoint *inter)
 				if (game->map[(int)inter->pos.y][x] == '2')
 					inter->door_flag = 1;
 				inter->pos.x = x;
-				inter->c_dir = 'W';
+				inter->c_dir = 'E';
 				break ;
 			}
 		}
@@ -62,7 +62,7 @@ t_cpoint *inter)
 				if (game->map[(int)inter->pos.y][x - 1] == '2')
 					inter->door_flag = 1;
 				inter->pos.x = x;
-				inter->c_dir = 'E';
+				inter->c_dir = 'W';
 				break ;
 			}
 		}

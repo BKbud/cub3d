@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 16:15:56 by bojung            #+#    #+#             */
-/*   Updated: 2023/08/24 18:18:58 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/28 14:27:51 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	get_tex_col(t_cpoint inter, t_texture *tex)
 
 	tx = 0;
 	if (inter.c_dir == 'E')
-		tx = (int)((ceil(inter.pos.y) - inter.pos.y) * tex->width);
-	if (inter.c_dir == 'W')
 		tx = (int)((inter.pos.y - floor(inter.pos.y)) * tex->width);
+	if (inter.c_dir == 'W')
+		tx = (int)((ceil(inter.pos.y) - inter.pos.y) * tex->width);
 	if (inter.c_dir == 'N')
-		tx = (int)((ceil(inter.pos.x) - inter.pos.x) * tex->width);
-	if (inter.c_dir == 'S')
 		tx = (int)((inter.pos.x - floor(inter.pos.x)) * tex->width);
+	if (inter.c_dir == 'S')
+		tx = (int)((ceil(inter.pos.x) - inter.pos.x) * tex->width);
 	return (tx);
 }
 
