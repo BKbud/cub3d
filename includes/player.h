@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 12:54:18 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/24 16:04:41 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/25 15:23:44 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define KEY_D 2
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
-# define D_ROT 0.03
-# define D_MOV 0.04
+# define D_ROT 0.05
+# define D_MOV 0.05
 # define COL 0.1
 
 typedef struct s_key

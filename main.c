@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:35:25 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/24 15:47:35 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/25 15:07:59 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	main_loop(t_data *data)
 	player_set(&data->player, data->game->map, \
 		data->game->wid, data->game->hei);
 	raycast(&data->player, data->game, data);
+	minimap(&data->player, data->game, data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img);
 	return (0);
