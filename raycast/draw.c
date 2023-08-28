@@ -6,7 +6,7 @@
 /*   By: hanryu <hanryu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:51:22 by hanryu            #+#    #+#             */
-/*   Updated: 2023/08/24 14:51:33 by hanryu           ###   ########.fr       */
+/*   Updated: 2023/08/28 13:48:01 by hanryu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,16 @@ static int	wall_pixel(double d)
 	return ((int)(W_Y / fov_h));
 }
 
-void	draw_wall(t_player *player, t_game *game, t_data *data, int index)
+static void	draw_wall2(t_game *game, t_data *data, t_cpoint inter, int arr[3])
 {
-	int			wpixel;
-	int			y_start;
-	int			y_end;
-	int			j;
-	double		theta;
-	t_cpoint	inter;
+	int	y_start;
+	int	y_end;
+	int	index;
+	int	j;
 
-	inter = raycast_single(player->pos,
-			rotate_ray_h(player->dir, index + 1), game);
-	theta = (deg2rad(FOV) / (W_X - 1))
-		* (index + 1 - ((double)(W_X + 1) / 2));
-	wpixel = wall_pixel(vec_dis(inter.pos, player->pos) * cos(theta));
-	y_start = (W_Y - wpixel) / 2;
-	y_end = ((W_Y + wpixel) / 2) - 1;
+	y_start = arr[0];
+	y_end = arr[1];
+	index = arr[2];
 	j = 0;
 	while (j < W_Y)
 	{
@@ -67,4 +61,22 @@ void	draw_wall(t_player *player, t_game *game, t_data *data, int index)
 				get_tex_color(data, inter, j - y_start, y_end - y_start));
 		j++;
 	}
+}
+
+void	draw_wall(t_player *player, t_game *game, t_data *data, int index)
+{
+	int			wpixel;
+	int			arr[3];
+	double		theta;
+	t_cpoint	inter;
+
+	inter = raycast_single(player->pos,
+			rotate_ray_h(player->dir, index + 1), game);
+	theta = (deg2rad(FOV) / (W_X - 1))
+		* (index + 1 - ((double)(W_X + 1) / 2));
+	wpixel = wall_pixel(vec_dis(inter.pos, player->pos) * cos(theta));
+	arr[0] = (W_Y - wpixel) / 2;
+	arr[1] = ((W_Y + wpixel) / 2) - 1;
+	arr[2] = index;
+	draw_wall2(game, data, inter, arr);
 }
