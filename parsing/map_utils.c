@@ -77,21 +77,24 @@ char	*erase_space(char *line)
 	return (ret_str);
 }
 
-void	space_adder(t_game *game, char *map, char *line)
+void	is_valid_code(char *line)
 {
-	size_t	len;
+	int	i;
 
-	len = ft_strlen(line);
-	ft_strlcpy(map, line, len + 1);
-	if (len != game->wid)
-	{
-		if (*map == '\n')
-			len--;
-		while (len < game->wid)
-		{
-			map[len] = ' ';
-			len++;
-		}
-	}
-	map[game->wid] = '\0';
+	i = 0;
+	while (is_whitespace(line[i]))
+		i++;
+	if (!line[i])
+		print_err("Invalid color code1\n");
+	while (line[i] >= '0' && line[i] <= '9')
+		i++;
+	while (is_whitespace(line[i]))
+		i++;
+	if (line[i] != ',' && line[i] != '\0')
+		print_err("Invalid color cod2\n");
+	i++;
+	while (is_whitespace(line[i]))
+		i++;
+	if (line[i] == ',')
+		print_err("Invalid color code3\n");
 }

@@ -57,14 +57,8 @@ int	main_loop(t_data *data)
 	return (0);
 }
 
-void aaa(void)
-{
-	system("leaks cub3D | grep leaked");
-}
-
 int	main(int ac, char **av)
 {
-	atexit(aaa);
 	t_game		*game;
 	t_data		data;
 

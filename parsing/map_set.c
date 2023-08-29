@@ -96,3 +96,22 @@ char	*jump_to_map(int fd)
 	}
 	return (temp_line);
 }
+
+void	space_adder(t_game *game, char *map, char *line)
+{
+	size_t	len;
+
+	len = ft_strlen(line);
+	ft_strlcpy(map, line, len + 1);
+	if (len != game->wid)
+	{
+		if (*map == '\n')
+			len--;
+		while (len < game->wid)
+		{
+			map[len] = ' ';
+			len++;
+		}
+	}
+	map[game->wid] = '\0';
+}

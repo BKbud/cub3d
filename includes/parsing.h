@@ -60,13 +60,14 @@ void	read_map(char *filename, t_game *game);
 void	check_max_wid(t_game *game, char *line, int fd);
 void	init_map(t_game *game, int fd, char *filename);
 char	*jump_to_map(int fd);
+void	space_adder(t_game *game, char *map, char *line);
 
 // map_utils.c
 void	init_game(t_game *game);
 int		is_whitespace(char c);
 char	*get_valid_line(int fd);
 char	*erase_space(char *line);
-void	space_adder(t_game *game, char *map, char *line);
+void	is_valid_code(char *line);
 
 // information_set.c
 char	*type_identifier(t_game *game, int fd);
