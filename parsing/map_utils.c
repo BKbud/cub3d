@@ -85,16 +85,16 @@ void	is_valid_code(char *line)
 	while (is_whitespace(line[i]))
 		i++;
 	if (!line[i])
-		print_err("Invalid color code1\n");
+		print_err("Invalid color code\n");
 	while (line[i] >= '0' && line[i] <= '9')
 		i++;
 	while (is_whitespace(line[i]))
 		i++;
 	if (line[i] != ',' && line[i] != '\0')
-		print_err("Invalid color cod2\n");
+		print_err("Invalid color cod\n");
 	i++;
 	while (is_whitespace(line[i]))
 		i++;
 	if (line[i] == ',')
-		print_err("Invalid color code3\n");
+		print_err("Invalid color code\n");
 }
