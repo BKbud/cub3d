@@ -109,7 +109,7 @@ void	set_flags(t_game *game, char *line)
 	else if (!ft_strncmp("EA ", line, 3))
 		game->flags.e_flag++;
 	else if (!ft_strncmp("CD ", line, 3))
-		game->flags.d_flag++;
+		game->flags.door_flag++;
 	else if (!ft_strncmp("F ", line, 2))
 		game->flags.f_flag++;
 	else if (!ft_strncmp("C ", line, 2))
@@ -117,6 +117,6 @@ void	set_flags(t_game *game, char *line)
 	if (game->flags.n_flag > 1 || game->flags.s_flag > 1
 		|| game->flags.w_flag > 1 || game->flags.e_flag > 1
 		|| game->flags.f_flag > 1 || game->flags.c_flag > 1
-		|| game->flags.d_flag > 1)
+		|| game->flags.door_flag > 1)
 		print_err("More informations exist\n");
 }
