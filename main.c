@@ -59,7 +59,7 @@ int	main_loop(t_data *data)
 
 void aaa(void)
 {
-	system("leaks cub3d | grep leaked");
+	system("leaks cub3D | grep leaked");
 }
 
 int	main(int ac, char **av)
