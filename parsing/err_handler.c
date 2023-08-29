@@ -39,7 +39,6 @@ void	check_init_data(t_game *game)
 		print_err("Uninitialized data exists\n");
 	if (!game->c_color || !game->f_color)
 		print_err("Invalid color information exist\n");
-	printf("%d\n", game->f_color->blue);
 	if (game->f_color->red > 255 || game->f_color->red < 0
 		|| game->f_color->green > 255 || game->f_color->green < 0
 		|| game->f_color->blue > 255 || game->f_color->blue < 0

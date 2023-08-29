@@ -36,19 +36,24 @@ char	*type_identifier(t_game *game, int fd)
 	return (NULL);
 }
 
-void 	before_atoi(char *line)
+void 	is_valid_code(char *line)
 {
 	int	i;
 
 	i = 0;
-	if (line[i] == ',')
-		print_err("Invalid color code\n");
 	while (is_whitespace(line[i]))
 		i++;
-	while (line[i] > '0' && line[i] < '9')
+	while (line[i] >= '0' && line[i] <= '9')
+		i++;
+	while (is_whitespace(line[i]))
 		i++;
 	if (line[i] != ',')
 		print_err("Invalid color code\n");
+	while (is_whitespace(line[++i]))
+		i++;
+	if (line[i] == '\0')
+		print_err("Invalid color code\n");
+
 }
 
 t_color	*set_color(char *line)
@@ -59,16 +64,16 @@ t_color	*set_color(char *line)
 	color = malloc(sizeof(t_color *));
 	if (!color)
 		return (NULL);
-	before_atoi(line);
+	is_valid_code(line);
 	color->red = ft_atoi(line);
 	while (*line > ',' && *(line + 1))
 		line++;
-	before_atoi(line);
+	is_valid_code(line);
 	if (*line == ',')
 	color->green = ft_atoi(++line);
 	while (*line > ',' && *(line + 1))
 		line++;
-	before_atoi(line);
+	is_valid_code(line);
 	color->blue = ft_atoi(++line);
 	while (*line)
 		if (is_whitespace(*(line++)))
@@ -83,6 +88,8 @@ void	check_color(char *line)
 
 	len = 0;
 	comma_num = 0;
+	if (line[0] == ',')
+		print_err("Invalid color code\n");
 	while (line[len])
 	{
 		if (line[len] != ',' && !is_whitespace(line[len])
