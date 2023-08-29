@@ -41,12 +41,15 @@ void	check_init_data(t_game *game)
 		print_err("Invalid color information exist\n");
 	if (game->f_color->red > 255 || game->f_color->red < 0
 		|| game->f_color->green > 255 || game->f_color->green < 0
-		|| game->f_color->blue > 255 || game->f_color->blue < 0)
+		|| game->f_color->blue > 255 || game->f_color->blue < 0
+		|| game->c_color->red > 255 || game->c_color->red < 0
+		|| game->c_color->green > 255 || game->c_color->green < 0
+		|| game->c_color->blue > 255 || game->c_color->blue < 0)
 		print_err("Color code range error\n");
 	map_check(game);
-	if (game->d_flag != 7)
-		print_err("Duplicated information or Character exists\n");
-	if (game->door_flag && !game->cd_texture)
+	if (game->flags.d_flag != 1)
+		print_err("More or less Character exists\n");
+	if (game->flags.door_flag && !game->cd_texture)
 		print_err("Uninitialized data exists\n");
 }
 
@@ -70,10 +73,10 @@ void	map_check(t_game *game)
 				|| game->map[i][j] == 'E' || game->map[i][j] == 'W')
 			{
 				game->direction = game->map[i][j];
-				game->d_flag++;
+				game->flags.d_flag++;
 			}
 			if (game->map[i][j] == '2')
-				game->door_flag = 1;
+				game->flags.door_flag = 1;
 		}
 	}
 	validation_check(game);

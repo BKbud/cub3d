@@ -81,7 +81,7 @@ void	init_tex_wall(t_data *data, t_game *game)
 	data->s_tex = new_tex(data, game->s_texture);
 	data->e_tex = new_tex(data, game->e_texture);
 	data->w_tex = new_tex(data, game->w_texture);
-	if (game->door_flag)
+	if (game->flags.door_flag)
 	{
 		data->cd_tex = new_tex(data, game->cd_texture);
 		if (!data->cd_tex)

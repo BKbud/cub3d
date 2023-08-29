@@ -45,10 +45,10 @@ t_color	*set_color(char *line)
 	if (!color)
 		return (NULL);
 	color->red = ft_atoi(line);
-	while (*line != ',' && *(line + 1))
+	while (*line > ',' && *(line + 1))
 		line++;
 	color->green = ft_atoi(++line);
-	while (*line != ',' && *(line + 1))
+	while (*line > ',' && *(line + 1))
 		line++;
 	color->blue = ft_atoi(++line);
 	while (*line)
@@ -66,18 +66,19 @@ void	check_color(char *line)
 	comma_num = 0;
 	while (line[len])
 	{
-		if (line[len] != ',' && !is_whitespace(line[len])
+		if (line[len] > ',' && !is_whitespace(line[len])
 			&& (line[len] < '0' || line[len] > '9'))
 			print_err("Invalid Color code\n");
 		if (line[len++] == ',')
 			comma_num++;
 	}
-	if (comma_num != 2)
+	if (comma_num > 2)
 		print_err("Invalid Color code\n");
 }
 
 int	set_data(t_game *game, char *line)
 {
+	set_flags(game, line);
 	if (!ft_strncmp("NO ", line, 3))
 		game->n_texture = erase_space(line + 3);
 	else if (!ft_strncmp("SO ", line, 3))
@@ -94,7 +95,25 @@ int	set_data(t_game *game, char *line)
 		game->c_color = set_color(line + 2);
 	else
 		return (0);
-	if (ft_strncmp("CD ", line, 3) != 0)
-		game->d_flag++;
 	return (1);
+}
+
+void	set_flags(t_game *game, char *line)
+{
+	if (!ft_strncmp("NO ", line, 3))
+		game->flags.n_flag++;
+	else if (!ft_strncmp("SO ", line, 3))
+		game->flags.s_flag++;
+	else if (!ft_strncmp("WE ", line, 3))
+		game->flags.w_flag++;
+	else if (!ft_strncmp("EA ", line, 3))
+		game->flags.e_flag++;
+	else if (!ft_strncmp("F ", line, 2))
+		game->flags.f_flag++;
+	else if (!ft_strncmp("C ", line, 2))
+		game->flags.c_flag++;
+	if (game->flags.n_flag > 1 || game->flags.s_flag > 1
+		|| game->flags.w_flag > 1 || game->flags.e_flag > 1
+		|| game->flags.f_flag > 1 || game->flags.c_flag > 1)
+		print_err("More informations exist\n");
 }

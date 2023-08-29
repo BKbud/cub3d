@@ -28,13 +28,24 @@ typedef struct s_color {
 	int	green;
 }	t_color;
 
+typedef struct s_flags
+{
+	int	e_flag;
+	int	w_flag;
+	int	s_flag;
+	int	n_flag;
+	int	f_flag;
+	int	c_flag;
+	int	d_flag;
+	int	door_flag;
+}	t_flags;
+
 typedef struct s_game {
 	size_t	hei;
 	size_t	wid;
 	char	**map;
 	char	direction;
-	int		d_flag;
-	int		door_flag;
+	t_flags	flags;
 	char	*n_texture;
 	char	*s_texture;
 	char	*e_texture;
@@ -62,13 +73,14 @@ char	*type_identifier(t_game *game, int fd);
 int		set_data(t_game *game, char *line);
 t_color	*set_color(char *line);
 void	check_color(char *line);
+void	set_flags(t_game *game, char *line);
 
 // err_handler.c
-void	check_extension(char *filename);
 void	print_err(char *msg);
 void	check_init_data(t_game *game);
 void	map_check(t_game *game);
 void	validation_check(t_game *game);
+void	check_extension(char *filename);
 
 // get_next_line.c
 char	*get_next_line(int fd);

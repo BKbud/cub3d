@@ -21,12 +21,11 @@ void	init_game(t_game *game)
 	game->e_texture = 0;
 	game->w_texture = 0;
 	game->cd_texture = 0;
-	game->f_color = 0;
-	game->c_color = 0;
 	game->map = 0;
 	game->direction = 0;
-	game->d_flag = 0;
-	game->door_flag = 0;
+	ft_memset(&game->flags, 0, sizeof(t_flags));
+	ft_memset(&game->f_color, 0, sizeof(t_color));
+	ft_memset(&game->c_color, 0, sizeof(t_color));
 }
 
 int	is_whitespace(char c)

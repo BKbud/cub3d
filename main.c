@@ -57,8 +57,14 @@ int	main_loop(t_data *data)
 	return (0);
 }
 
+void aaa(void)
+{
+	system("leaks cub3d | grep leaked");
+}
+
 int	main(int ac, char **av)
 {
+	atexit(aaa);
 	t_game		*game;
 	t_data		data;
 
@@ -74,7 +80,7 @@ int	main(int ac, char **av)
 	init_player(&data.player, game->map, game->wid, game->hei);
 	data.game = game;
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, W_X, W_Y, "cub3d");
+	data.win = mlx_new_window(data.mlx, W_X, W_Y, "cub3D");
 	init_tex_wall(&data, game);
 	mlx_hook(data.win, EVENT_KEY_PRESS, 0, key_press, &data);
 	mlx_hook(data.win, EVENT_KEY_RELEASE, 0, key_release, &data);
