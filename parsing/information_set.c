@@ -25,7 +25,7 @@ char	*type_identifier(t_game *game, int fd)
 		temp_line = line;
 		while (is_whitespace(*line))
 			line++;
-		if (set_data(game, line) || *line == '\n')
+		if (set_data(game, line) || *line == '\n' || *line == '\0')
 			line = get_valid_line(fd);
 		else if (*line == '1')
 			return (temp_line);
